@@ -43,6 +43,8 @@ public class GameController {
 
     public void gameRound(){
         for (Player playingPlayer: players){
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             System.out.println("Na rade je hrac: "+playingPlayer.getName());
             //check for dynamite
             dynamiteChecking(playingPlayer);
@@ -71,6 +73,7 @@ public class GameController {
                             break;
                         case 2:
                             //zahraj kartu
+                            //TODO ZVOL CI CHES KARTY Z RUKY NA STOL DAT
                             playingSpecificHandCard(playingPlayer);
                             System.out.println("hrajem kartu");
                             break;
@@ -128,7 +131,7 @@ public class GameController {
     }
 
     public boolean prisonChecking(Player playingPlayer){
-        int prisonActions = playingPlayer.prisonAction(rn);
+        int prisonActions = playingPlayer.prisonAction();
         if (prisonActions<3){
             //hrac ma kartu vazenie
             removedPlayingCards.add(new Prigione("Vazenie"));
@@ -173,12 +176,13 @@ public class GameController {
 
 
     public Player whoIsPlayerBefore(Player playingPlayer){
+
         for (int i = 1; i <players.size() ; i++) {
             if (players.get(i) == playingPlayer){
                 return players.get(i-1);
             }
         }
-        return players.get(0);
+        return players.get(players.size()-1);
     }
 
     public void lorePrint(){
@@ -270,10 +274,10 @@ public class GameController {
             System.out.println("Sak mas 0 kariet ty dilinko co chces hrat XD"); //uprav text dilino
         }else {
             int cardChoice = cardChoice(player);
-            BrownCard bc = (BrownCard) player.getHandCards().get(cardChoice);
-            System.out.println("SKUSAM BANGA ZABAVIC");
+            PlayingCard bc = player.getHandCards().get(cardChoice);
+            System.out.println("SKUSAM KARTU ZABAVIC");
             player.getHandCards().remove(bc);
-            bc.useCard(player,players);
+            bc.useCard(playingCards,player,players);
 
         }
     }

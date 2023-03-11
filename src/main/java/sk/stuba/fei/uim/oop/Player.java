@@ -72,15 +72,16 @@ public class Player {
         }
     }
 
-    public int prisonAction(Random rn){
-        Prigione prisonCard = new Prigione("Vazenie");
-        if(tableCards.contains(prisonCard)){
-            removeTableCard(prisonCard);
-            return prisonCard.useCard(rn, this);
+    public int prisonAction(){
+        for (int i = 0; i <tableCards.size() ; i++) {
+            if (tableCards.get(i) instanceof Prigione){
+                BlueCard bc = (BlueCard) tableCards.get(i);
+                removeTableCard(bc);
+                return bc.useCard(this);
+            }
         }
-        else {
-            return 3;
-        }
+        return 3;
+
 
     }
 
@@ -161,15 +162,20 @@ public class Player {
     }
 
     public int dynamiteAction(Random rn) {
-        Dinamite dynamiteCard = new Dinamite("Dynamit");
-        if (tableCards.contains(dynamiteCard)) {
-            removeTableCard(dynamiteCard);
-            return dynamiteCard.useCard(rn,this);
-        } else {
-            System.out.println("Nemas pred sebou dynamit");
-            return 3;
-            //TODO NEMAS PORIESENE ZE POJDE DALSIEMU HRACOVI, SPRAVIT!!!
+        for (int i = 0; i <tableCards.size() ; i++) {
+            if (tableCards.get(i) instanceof Dinamite){
+                System.out.println("NO BOHA TU SOM");
+                BlueCard dc = (BlueCard) tableCards.get(i);
+                removeTableCard(tableCards.get(i));
+                return dc.useCard(this);
+            }
         }
+        //WORKING ON ZE NEREGISTRUJE BARELL ANI VAZENIE TODO
+        System.out.println("Nemas pred sebou dynamit");
+        return 3;
+        //TODO NEMAS PORIESENE ZE POJDE DALSIEMU HRACOVI, SPRAVIT!!! - fakt nemas? bo mne sa zda ze hej
+
+
     }
 
     public void removeTableCard(PlayingCard bc){

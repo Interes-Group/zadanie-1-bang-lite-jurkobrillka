@@ -5,6 +5,7 @@ import sk.stuba.fei.uim.oop.card.PlayingCard;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Indiani extends BrownCard{
     public Indiani(String title) {
@@ -12,12 +13,12 @@ public class Indiani extends BrownCard{
     }
 
     @Override
-    public ArrayList<PlayingCard> useCard(Player byPlayer, List<Player> players) {
+    public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
         for (Player player: players) {
             if (player!=byPlayer){
                 boolean isBang = false;
                 for (int i = 0; i <player.getHandCards().size() ; i++) {
-                    if (player.getHandCards().get(i).getTitle().equals("Bang")){
+                    if (player.getHandCards().get(i) instanceof Bang){
                         System.out.println("Hrac "+ player.getName()+ " ma kartu bang, indiani su na neho kratki...");
                         isBang = true;
                         player.getHandCards().remove(player.getHandCards().get(i));

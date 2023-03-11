@@ -7,6 +7,7 @@ import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 public class CatBalou extends BrownCard{
 
@@ -15,7 +16,7 @@ public class CatBalou extends BrownCard{
     }
 
     @Override
-    public ArrayList<PlayingCard> useCard(Player byPlayer, List<Player> players) {
+    public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
         System.out.println("Zadaj komu chces nieco ukradnut: ");
         Player poorPlayer = choicePlayerToBeAttacked(byPlayer,players);
 
@@ -38,7 +39,7 @@ public class CatBalou extends BrownCard{
                     break;
                 }
             }
-            System.out.println("Ides vyhodit hracovi " + poorPlayer.getName() + " kartu " + poorPlayer.getHandCards().get(indexCard).getTitle() + ".");
+            System.out.println("Ides vyhodit hracovi " + poorPlayer.getName() + " kartu " + poorPlayer.getHandCards().get(indexCard-1).getTitle() + ".");
             poorPlayer.getHandCards().remove(indexCard - 1);
         }
 

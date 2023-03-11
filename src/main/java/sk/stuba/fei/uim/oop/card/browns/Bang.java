@@ -8,6 +8,7 @@ import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 public class Bang extends BrownCard{
     public Bang(String title) {
@@ -17,7 +18,7 @@ public class Bang extends BrownCard{
 
 
     @Override
-    public ArrayList<PlayingCard> useCard(Player byPlayer, List<Player> players) {
+    public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
         //vyberam hraca na ktoreho budem strielat
         Player attackedPlayer = choicePlayerToBeAttacked(byPlayer,players);
         System.out.println("Ides zautocit na "+attackedPlayer.getName());
@@ -26,35 +27,44 @@ public class Bang extends BrownCard{
         //pozeram ci ma vedle
         //ale predtym pozeram ci ma doriti ten posraty bang
         Barile barel = new Barile("Barel");
-        if (attackedPlayer.getTableCards().contains(barel)){
-            //rob daco s barelom dopizdi
-        }else {
-            //nema barel, idem kukat ci nema vedle
-            PlayingCard mancato = new Mancato("Vedla");
-            boolean helpJesusBoolean = false;
-            for (PlayingCard cardMan: attackedPlayer.getHandCards()){
-                if (cardMan.getTitle().equals("Vedla")){
-                    helpJesusBoolean = true;
+        for (int i = 0; i <1 ; i++) {
+
+            if (attackedPlayer.getTableCards().contains(barel)){
+                if (barel.useCard(attackedPlayer) == 1){
+                    //trafil barel, vyskakujes z loopu, ides dalej v hre
                     break;
                 }
             }
 
-            if (helpJesusBoolean){
-                //ma vedle, odstranim mu vedle
-                for (int i = 0; i < attackedPlayer.getHandCards().size(); i++) {
-                    if (attackedPlayer.getHandCards().get(i).getTitle().equals("Vedla")){
-                        attackedPlayer.getHandCards().remove(i);
+                //nema barel, alebo ma ale netrafil d neho takze nevyskocil z loopu idem kukat ci nema vedle
+                PlayingCard mancato = new Mancato("Vedla");
+                boolean helpJesusBoolean = false;
+                for (PlayingCard cardMan: attackedPlayer.getHandCards()){
+                    if (cardMan instanceof Mancato){
+                        helpJesusBoolean = true;
                         break;
                     }
                 }
-                System.out.println("Hrac "+attackedPlayer.getName()+ " ma kartu vedle, pouziva ju...");
-            }
-            else {
-                System.out.println("Hrac "+attackedPlayer.getName()+ " nema kartu vedle, straca zivot");
-                int atpLives = attackedPlayer.getLives();
-                attackedPlayer.setLives(atpLives-1);
-            }
+
+                if (helpJesusBoolean){
+                    //ma vedle, odstranim mu vedle
+                    for (int j = 0; j < attackedPlayer.getHandCards().size(); j++) {
+                        if (attackedPlayer.getHandCards().get(j) instanceof Mancato){
+                            attackedPlayer.getHandCards().remove(j);
+                            break;
+                        }
+                    }
+                    System.out.println("Hrac "+attackedPlayer.getName()+ " ma kartu vedle, pouziva ju...");
+                }
+                else {
+                    System.out.println("Hrac "+attackedPlayer.getName()+ " nema kartu vedle, straca zivot");
+                    int atpLives = attackedPlayer.getLives();
+                    attackedPlayer.setLives(atpLives-1);
+                }
+
+
         }
+
 
 
         return null;
