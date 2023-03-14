@@ -1,5 +1,6 @@
 package sk.stuba.fei.uim.oop.card.blues;
 
+import sk.stuba.fei.uim.oop.GameController;
 import sk.stuba.fei.uim.oop.Player;
 import sk.stuba.fei.uim.oop.card.PlayingCard;
 
@@ -10,7 +11,7 @@ public abstract class BlueCard extends PlayingCard {
         super(title);
     }
 
-    public abstract int useCard(Player player); //budes davat prazdny list ak tak no ta sa neposer
+    public abstract int useCard(GameController gameController);
 
 
 }

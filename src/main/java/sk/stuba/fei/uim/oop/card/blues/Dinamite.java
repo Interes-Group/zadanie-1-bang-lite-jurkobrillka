@@ -1,5 +1,6 @@
 package sk.stuba.fei.uim.oop.card.blues;
 
+import sk.stuba.fei.uim.oop.GameController;
 import sk.stuba.fei.uim.oop.Player;
 import sk.stuba.fei.uim.oop.card.PlayingCard;
 
@@ -14,21 +15,50 @@ public class Dinamite extends BlueCard {
         super(title);
     }
 
+    public Player whoIsPlayerBefore(Player byPlayer, List<Player> players){
+        for (int i = 1; i <players.size() ; i++) {
+            if (players.get(i) == byPlayer){
+                return players.get(i-1);
+            }
+        }
+        return players.get(players.size()-1);
+    }
+
     @Override
-    public int useCard(Player player) {
+    public int useCard(Player playingPlayer, List<Player> players) {
 
         int boomChance = (int) Math.floor(Math.random() *(8 - 1 + 1) + 1);//rn.nextInt(8) + 1; //TODO TU VYSKUSAT CI BUCHNE A CI SA POSUNIE KARTE DRUHEMU HRACOVI
         if (boomChance == 8) {
             //bomb has exploded
             System.out.println("Buchol si :(");
+                /*
+                int livesBeforeBomb = playingPlayer.getLives();
+                playingPlayer.setLives(livesBeforeBomb-3);
+                if (playingPlayer.getLives()<1){
+                    playingPlayer.playerDie(players,playingPlayer.removedPlayingCards);
+                    players.remove(playingPlayer);
+                }*/
+                //TODO AK BUCHNE NEZOMRIE ALE ZOMRIE AZ KED SKONCI KARTU V LOOPE FOREACH, (pridaj funkciu na checkovanie )
+
+                //TODO NEMAS PORIESENE ZE POJDE DALSIEMU HRACOVI, SPRAVIT!!! - UZ HOTOVO?
+
             // TODO removeTableCard(dynamiteCard);
-            return 1;
+            return 10;
         } else {
             // TODO removeTableCard(dynamiteCard);
             System.out.println("Nebuchol si (jes!)");
-            return 2;
+            Player pBefore = whoIsPlayerBefore(playingPlayer,players);
+            System.out.println("Posuvas hracovi "+pBefore.getName()+" kartu dynamit :P ");
+            pBefore.addCardToTable(new Dinamite("Dynamit"));
+            //posuvas inemu
+            return 20;
         }
 
+    }
+
+    @Override
+    public int useCard(GameController gameController) {
+        return 0;
     }
 
     @Override

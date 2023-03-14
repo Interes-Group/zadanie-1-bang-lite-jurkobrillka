@@ -1,5 +1,6 @@
 package sk.stuba.fei.uim.oop.card.blues;
 
+import sk.stuba.fei.uim.oop.GameController;
 import sk.stuba.fei.uim.oop.Player;
 import sk.stuba.fei.uim.oop.card.PlayingCard;
 import sk.stuba.fei.uim.oop.card.browns.CatBalou;
@@ -17,7 +18,22 @@ public class Prigione extends BlueCard{
 
 
     @Override
-    public int useCard(Player player) {
+    public int useCard(Player player, List<Player> players) {
+        int prisonCHance = (int) Math.floor(Math.random() *(4 - 1 + 1) + 1);
+
+        if (prisonCHance==4){
+            System.out.println("Si vo vazeni, pokracuje dalsi hrac, kartu ti berieme");
+            return 10;
+        }
+        else {
+            System.out.println("Vyhol si sa vazeniu, kartu ti berieme");
+            return 20;
+        }
+
+    }
+
+    @Override
+    public int useCard(GameController gameController) {
         int prisonCHance = (int) Math.floor(Math.random() *(4 - 1 + 1) + 1);
 
         if (prisonCHance==4){
@@ -28,7 +44,6 @@ public class Prigione extends BlueCard{
             System.out.println("Vyhol si sa vazeniu, kartu ti berieme");
             return 2;
         }
-
     }
 
     @Override

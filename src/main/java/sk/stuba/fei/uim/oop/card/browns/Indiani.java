@@ -13,6 +13,11 @@ public class Indiani extends BrownCard{
     }
 
     @Override
+    public int useCard(Player player, List<Player> players) {
+        return 0;
+    }
+
+    @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
         for (Player player: players) {
             if (player!=byPlayer){

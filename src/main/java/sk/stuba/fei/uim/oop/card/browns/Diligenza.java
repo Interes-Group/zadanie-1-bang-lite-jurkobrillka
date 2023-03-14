@@ -14,6 +14,11 @@ public class Diligenza extends BrownCard{
     }
 
     @Override
+    public int useCard(Player player, List<Player> players) {
+        return 0;
+    }
+
+    @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
 
         System.out.print("Hrac "+byPlayer.getName()+" si taha 2 karty: ");

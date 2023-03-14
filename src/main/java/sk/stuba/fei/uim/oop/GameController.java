@@ -43,13 +43,34 @@ public class GameController {
 
     public void gameRound(){
         for (Player playingPlayer: players){
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
             System.out.println("Na rade je hrac: "+playingPlayer.getName());
+
+            /*
+            //TOTO ZATIAL NEPOTREBUJES, ideme robit verziu pre hracov v funkcii, neskor spravime ze ovplyvni hracov v gameController cez milion ifov...
+            //Na zaciatok musim presortovat polo + opacne, aby som vedel ze prve pojde dynamite a tak vazenie, lebo dynamit buchne (to je jedno zatial ci zomries...) a este kukni ci ides do vazenia
+            //ak jebnes a zomries, uz je jedno ci kuknes vazenie alebo nie, i tak pojde do kosa...mozno nejako osetri vstupik jupik
+
+            playingPlayer.getTableCards().sort(new Comparator<PlayingCard>() {
+                @Override
+                public int compare(PlayingCard o1, PlayingCard o2) {
+                    return o1.getTitle().compareTo(o2.getTitle());
+                }
+            });
+            */
             //check for dynamite
+            //TODO
+            //dynamite and prison checking
+
+            checkForBlueCards(playingPlayer, this);
+
+
+            System.out.println("TURURU" + playingPlayer.getTableCards().size());
+            //TODO remove original methods...
             dynamiteChecking(playingPlayer);
+            /*
             //check for prison
             if (!prisonChecking(playingPlayer)) {break;} //hrac pokracuje v hre,,, taze asi nic tu nedavam
+            */
             System.out.println("Tvoj tah pokracuje");
             System.out.println("Tahas si 2 karty...");
 
@@ -94,6 +115,19 @@ public class GameController {
 
 
         }
+
+    }
+
+    private void checkForBlueCards(Player playingPlayer, GameController gameController) {
+
+        //IDEM ROBIT normalne s hracmi vo funkcii jebal to pes SPRAV 2 verzie, ukaz na cviku...
+        //TODO
+        for (PlayingCard bc:playingPlayer.getTableCards()){
+        bc.useCard(playingPlayer,players);
+        playingPlayer.removeTableCard(bc);
+        //POZOR ABY SI NEVYHODIL BARELL
+            //ASI TI TO VYJEBE ZE NEMOZES MENIT OBSAH POLA VO FOR EACHi
+    }
 
     }
 
@@ -276,6 +310,7 @@ public class GameController {
             int cardChoice = cardChoice(player);
             PlayingCard bc = player.getHandCards().get(cardChoice);
             System.out.println("SKUSAM KARTU ZABAVIC");
+            //TODO - vymazac sout chujovy
             player.getHandCards().remove(bc);
             bc.useCard(playingCards,player,players);
 

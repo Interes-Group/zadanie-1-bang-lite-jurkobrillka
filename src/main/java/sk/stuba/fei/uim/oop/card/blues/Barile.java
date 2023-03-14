@@ -1,5 +1,6 @@
 package sk.stuba.fei.uim.oop.card.blues;
 
+import sk.stuba.fei.uim.oop.GameController;
 import sk.stuba.fei.uim.oop.Player;
 import sk.stuba.fei.uim.oop.card.PlayingCard;
 
@@ -15,7 +16,7 @@ public class Barile extends BlueCard{
     }
 
     @Override
-    public int useCard(Player player) {
+    public int useCard(Player player, List<Player> players) {
         int boomChance = (int) Math.floor(Math.random() *(4 - 1 + 1) + 1);//rn.nextInt(8) + 1; //TODO TU VYSKUSAT CI BUCHNE A CI SA POSUNIE KARTE DRUHEMU HRACOVI
         if (boomChance == 4) {
             //bomb has exploded
@@ -27,6 +28,11 @@ public class Barile extends BlueCard{
             System.out.println("Nestihol si sa skryt za barel...");
             return 2;
         }
+    }
+
+    @Override
+    public int useCard(GameController gameController) {
+        return 0;
     }
 
     @Override

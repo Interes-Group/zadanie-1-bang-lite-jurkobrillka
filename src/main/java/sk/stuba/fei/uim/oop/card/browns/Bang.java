@@ -15,6 +15,10 @@ public class Bang extends BrownCard{
         super(title);
     }
 
+    @Override
+    public int useCard(Player player, List<Player> players) {
+        return 0;
+    }
 
 
     @Override
@@ -30,7 +34,7 @@ public class Bang extends BrownCard{
         for (int i = 0; i <1 ; i++) {
 
             if (attackedPlayer.getTableCards().contains(barel)){
-                if (barel.useCard(attackedPlayer) == 1){
+                if (barel.useCard(attackedPlayer, players) == 1){
                     //trafil barel, vyskakujes z loopu, ides dalej v hre
                     break;
                 }

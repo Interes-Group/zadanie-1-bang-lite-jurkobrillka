@@ -77,7 +77,7 @@ public class Player {
             if (tableCards.get(i) instanceof Prigione){
                 BlueCard bc = (BlueCard) tableCards.get(i);
                 removeTableCard(bc);
-                return bc.useCard(this);
+                return 10;//bc.useCard(this,);
             }
         }
         return 3;
@@ -167,7 +167,7 @@ public class Player {
                 System.out.println("NO BOHA TU SOM");
                 BlueCard dc = (BlueCard) tableCards.get(i);
                 removeTableCard(tableCards.get(i));
-                return dc.useCard(this);
+                return 10;//dc.useCard(this);
             }
         }
         //WORKING ON ZE NEREGISTRUJE BARELL ANI VAZENIE TODO

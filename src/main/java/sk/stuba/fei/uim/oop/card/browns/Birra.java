@@ -16,6 +16,11 @@ public class Birra extends BrownCard{
     }
 
     @Override
+    public int useCard(Player player, List<Player> players) {
+        return 0;
+    }
+
+    @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
         int livesNow = byPlayer.getLives();
         byPlayer.setLives(livesNow+1);

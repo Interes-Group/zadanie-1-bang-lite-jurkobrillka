@@ -16,6 +16,11 @@ public class CatBalou extends BrownCard{
     }
 
     @Override
+    public int useCard(Player player, List<Player> players) {
+        return 0;
+    }
+
+    @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
         System.out.println("Zadaj komu chces nieco ukradnut: ");
         Player poorPlayer = choicePlayerToBeAttacked(byPlayer,players);
@@ -30,7 +35,7 @@ public class CatBalou extends BrownCard{
             while (true) {
                 System.out.println("Zadaj poradove cislo ktoru kartu z ruky chces ukradnut: ");
                 for (int j = 0; j < poorPlayer.getHandCards().size(); j++) {
-                    System.out.print("(" + (j + 1) + ".) " + poorPlayer.getHandCards().get(j).getTitle() + ", ");
+                    System.out.print("(" + (j + 1) + ".), ");
                 }
                 indexCard = ZKlavesnice.readInt("Zadaj cislo");
                 if (indexCard < 1 || indexCard > poorPlayer.getHandCards().size()) {

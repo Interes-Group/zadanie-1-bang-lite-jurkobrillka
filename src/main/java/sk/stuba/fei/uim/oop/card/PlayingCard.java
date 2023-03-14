@@ -16,6 +16,10 @@ public abstract class PlayingCard {
         this.title = title;
     }
 
+
+    public abstract int useCard(Player player, List<Player> players); //budes davat prazdny list ak tak no ta sa neposer
+
+
     public String getTitle() {
         return title;
     }
