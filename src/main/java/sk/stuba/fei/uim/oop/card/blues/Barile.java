@@ -42,7 +42,8 @@ public class Barile extends BlueCard{
         boolean canIPutOnTheTable = true;
         for (PlayingCard bc: byPlayer.getTableCards()){
             if (bc instanceof Barile){
-                System.out.println("Nemozes dat pred seba barel, uz jeden mas...");
+                System.out.println("Nemozes dat pred seba barel, uz jeden mas...\nVraciame ti kartu do ruky :) (nz...)");
+                byPlayer.getHandCards().add(new Barile("Barel"));
                 canIPutOnTheTable = false;
                 break;
             }

@@ -21,7 +21,8 @@ public class Mancato extends BrownCard{
 
     @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
-        System.out.println("Karta vedle sa v tvojom tahu zahrat neda :) ");
+        System.out.println("Karta vedle sa v tvojom tahu zahrat neda :) vraciame ti ju, najdes ju na konci balicka svojich kariet. (nz...)");
+        byPlayer.getHandCards().add(new Mancato("Vedle"));
         return null;
     }
 }

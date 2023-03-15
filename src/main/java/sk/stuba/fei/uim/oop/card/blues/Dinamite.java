@@ -35,7 +35,11 @@ public class Dinamite extends BlueCard {
             System.out.println("Buchol si :(");
             int livesBeforeBomb = playingPlayer.getLives();
             playingPlayer.setLives(livesBeforeBomb-3);
-            return 10;
+            if (playingPlayer.getLives()<=0){
+                return 12;
+            }
+            else return 10;
+
         } else {
             System.out.println("Nebuchol si (jes!)");
             Player pBefore = whoIsPlayerBefore(playingPlayer,players);
@@ -59,7 +63,8 @@ public class Dinamite extends BlueCard {
         boolean canIPutOnTheTable = true;
         for (PlayingCard bc: byPlayer.getTableCards()){
             if (bc instanceof Dinamite){
-                System.out.println("Nemozes dat pred seba dynamit, uz jeden mas...");
+                System.out.println("Nemozes dat pred seba dynamit, uz jeden mas...\nVraciame ti kartu do ruky :) (nz...)");
+                byPlayer.getHandCards().add(new Dinamite("Dynamit"));
                 canIPutOnTheTable = false;
                 break;
             }

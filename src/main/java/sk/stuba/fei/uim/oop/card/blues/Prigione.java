@@ -24,7 +24,7 @@ public class Prigione extends BlueCard{
         //chujovina pre iterator asi... player.removeTableCard(this);
         if (prisonCHance==4){
             System.out.println("Si vo vazeni, pokracuje dalsi hrac, kartu ti berieme");
-            return 10;
+            return 11;
         }
         else {
             System.out.println("Vyhol si sa vazeniu, kartu ti berieme");
@@ -54,8 +54,9 @@ public class Prigione extends BlueCard{
         boolean canIPutOnTheTable = true;
         for (PlayingCard bc: poorPlayer.getTableCards()){
             if (bc instanceof Prigione){
-                System.out.println("Nemozes tam dat vazenie, uz jeden ma...");
+                System.out.println("Nemozes tam dat vazenie, uz jeden ma...\nVraciame ti kartu do ruky :) (nz...)");
                 canIPutOnTheTable = false;
+                byPlayer.getHandCards().add(new Prigione("Vazenie"));
                 break;
             }
         }

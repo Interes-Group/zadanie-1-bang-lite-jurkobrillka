@@ -63,7 +63,7 @@ public class Player {
 
     public void playerDie(List<Player> players, Stack<PlayingCard> removedPlayingCards) {
         System.out.println("Hrac " + name + " stratil vsetky zivoty, umiera");
-        players.remove(this);
+        //players.remove(this);
         for (PlayingCard bc : handCards) {
             removedPlayingCards.push(bc);
         }
