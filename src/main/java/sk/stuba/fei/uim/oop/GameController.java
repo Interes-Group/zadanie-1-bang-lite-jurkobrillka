@@ -64,7 +64,7 @@ public class GameController {
             checkForBlueCards(playingPlayer, this);
 
 
-            System.out.println("TURURU" + playingPlayer.getTableCards().size());
+            System.out.println("TURURU: " + playingPlayer.getTableCards().size());
             //TODO remove original methods...
             dynamiteChecking(playingPlayer);
             /*
@@ -122,13 +122,23 @@ public class GameController {
 
         //IDEM ROBIT normalne s hracmi vo funkcii jebal to pes SPRAV 2 verzie, ukaz na cviku...
         //TODO
-        for (PlayingCard bc:playingPlayer.getTableCards()){
-        bc.useCard(playingPlayer,players);
-        playingPlayer.removeTableCard(bc);
-        //POZOR ABY SI NEVYHODIL BARELL
-            //ASI TI TO VYJEBE ZE NEMOZES MENIT OBSAH POLA VO FOR EACHi
-    }
 
+        //TODO CONTROL
+        Iterator<PlayingCard> iterator = playingPlayer.getTableCards().iterator();
+        while (iterator.hasNext()) {
+            PlayingCard pc = iterator.next();
+            if (pc.useCard(playingPlayer, players) > 2) {
+                iterator.remove(); // odstránenie prvku pomocou iterátora
+                //TODO CONTROL
+            }
+        }
+        /* while(iteratorr.hasNext()) {
+            PlayingCard pc = iteratorr.next();
+            if (pc.useCard(playingPlayer,players)>2){
+                iteratorr.remove();
+                //TODO CONTROL
+            }
+        }*/
     }
 
     public void firstPhasePickingCards(Player player){

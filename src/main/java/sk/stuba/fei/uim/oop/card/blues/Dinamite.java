@@ -27,25 +27,16 @@ public class Dinamite extends BlueCard {
     @Override
     public int useCard(Player playingPlayer, List<Player> players) {
 
+        //remove from table asi okkocina iterator tA MAZEM... playingPlayer.removeTableCard(this);
         int boomChance = (int) Math.floor(Math.random() *(8 - 1 + 1) + 1);//rn.nextInt(8) + 1; //TODO TU VYSKUSAT CI BUCHNE A CI SA POSUNIE KARTE DRUHEMU HRACOVI
         if (boomChance == 8) {
-            //bomb has exploded
+            //buchla bomba, zoberie mu zivoty, ale NEZDECHNE...
+            //TODO CONTROL
             System.out.println("Buchol si :(");
-                /*
-                int livesBeforeBomb = playingPlayer.getLives();
-                playingPlayer.setLives(livesBeforeBomb-3);
-                if (playingPlayer.getLives()<1){
-                    playingPlayer.playerDie(players,playingPlayer.removedPlayingCards);
-                    players.remove(playingPlayer);
-                }*/
-                //TODO AK BUCHNE NEZOMRIE ALE ZOMRIE AZ KED SKONCI KARTU V LOOPE FOREACH, (pridaj funkciu na checkovanie )
-
-                //TODO NEMAS PORIESENE ZE POJDE DALSIEMU HRACOVI, SPRAVIT!!! - UZ HOTOVO?
-
-            // TODO removeTableCard(dynamiteCard);
+            int livesBeforeBomb = playingPlayer.getLives();
+            playingPlayer.setLives(livesBeforeBomb-3);
             return 10;
         } else {
-            // TODO removeTableCard(dynamiteCard);
             System.out.println("Nebuchol si (jes!)");
             Player pBefore = whoIsPlayerBefore(playingPlayer,players);
             System.out.println("Posuvas hracovi "+pBefore.getName()+" kartu dynamit :P ");
@@ -80,8 +71,6 @@ public class Dinamite extends BlueCard {
 
             for (int i = 0; i < byPlayer.getHandCards().size(); i++){
                 if (byPlayer.getHandCards().get(i) instanceof Dinamite){
-                    System.out.println("Berieme ti z ruky kartu "+byPlayer.getHandCards().get(i).getTitle()+" do odhadzovacieho balicka");
-                    byPlayer.getHandCards().remove(i);
                     break;
                 }
             }

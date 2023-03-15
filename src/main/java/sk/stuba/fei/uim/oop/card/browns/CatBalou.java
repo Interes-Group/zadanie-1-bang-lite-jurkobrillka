@@ -66,7 +66,7 @@ public class CatBalou extends BrownCard{
                     break;
                 }
             }
-            System.out.println("Ides vyhodit hracovi " + poorPlayer.getName() + " kartu " + poorPlayer.getTableCards().get(indexCard).getTitle() + ".");
+            System.out.println("Ides vyhodit hracovi " + poorPlayer.getName() + " kartu " + poorPlayer.getTableCards().get(indexCard-1).getTitle() + ".");
             poorPlayer.getTableCards().remove(indexCard - 1);
         }
 

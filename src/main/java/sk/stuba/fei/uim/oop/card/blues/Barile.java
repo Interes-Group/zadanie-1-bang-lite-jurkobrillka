@@ -54,8 +54,6 @@ public class Barile extends BlueCard{
             //TODO REMOVE FROM HAND
             for (int i = 0; i < byPlayer.getHandCards().size(); i++){
                 if (byPlayer.getHandCards().get(i) instanceof Barile){
-                    System.out.println("Berieme ti z ruky kartu "+byPlayer.getHandCards().get(i).getTitle()+" a vkladame ju pred teba");
-                    byPlayer.getHandCards().remove(i);
                     break;
                 }
             }
