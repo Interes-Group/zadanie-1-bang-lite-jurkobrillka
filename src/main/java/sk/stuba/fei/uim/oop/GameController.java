@@ -40,6 +40,8 @@ public class GameController {
         while (players.size()>1){
             //one round
             gameRound();
+            //pozri poriadne iteratory
+            //nezabudni umint!!!
         }
     }
 
