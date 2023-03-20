@@ -39,6 +39,9 @@ public class Bang extends BrownCard{
                         canContinue = false;
                         break;
                     }
+                    else {
+                        System.out.println("hrac PRESTRELIL BAREL!");
+                    }
                 }
             }
 

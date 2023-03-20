@@ -71,6 +71,7 @@ public class Player {
         for (PlayingCard bc : tableCards) {
             removedPlayingCards.push(bc);
         }
+
     }
 
     public int prisonAction(){

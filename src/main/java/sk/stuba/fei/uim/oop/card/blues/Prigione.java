@@ -24,10 +24,11 @@ public class Prigione extends BlueCard{
         //chujovina pre iterator asi... player.removeTableCard(this);
         if (prisonCHance==4){
             System.out.println("Si vo vazeni, pokracuje dalsi hrac, kartu ti berieme");
+            System.out.println("Si vo vazeni, pokracuje dalsi hrac, kartu ti berieme :" + prisonCHance);
             return 11;
         }
         else {
-            System.out.println("Vyhol si sa vazeniu, kartu ti berieme");
+            System.out.println("Vyhol si sa vazeniu, kartu ti berieme: "+prisonCHance);
             return 20;
         }
 
@@ -39,10 +40,12 @@ public class Prigione extends BlueCard{
 
         if (prisonCHance==4){
             System.out.println("Si vo vazeni, pokracuje dalsi hrac, kartu ti berieme :" + prisonCHance);
+            System.out.println("MOREEE");
             return 1;
         }
         else {
             System.out.println("Vyhol si sa vazeniu, kartu ti berieme :"+ prisonCHance);
+            System.out.println("MOREEE");
             return 2;
         }
     }

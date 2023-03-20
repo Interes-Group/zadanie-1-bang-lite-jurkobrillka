@@ -29,7 +29,8 @@ public class Dinamite extends BlueCard {
 
         //remove from table asi okkocina iterator tA MAZEM... playingPlayer.removeTableCard(this);
         int boomChance = (int) Math.floor(Math.random() *(8 - 1 + 1) + 1);//rn.nextInt(8) + 1; //TODO TU VYSKUSAT CI BUCHNE A CI SA POSUNIE KARTE DRUHEMU HRACOVI
-        if (boomChance == 8) {
+        if (boomChance != 15) {
+            //TODO zmen na ==8
             //buchla bomba, zoberie mu zivoty, ale NEZDECHNE...
             //TODO CONTROL
             System.out.println("Buchol si :(");

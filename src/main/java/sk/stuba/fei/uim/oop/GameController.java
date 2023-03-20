@@ -47,7 +47,8 @@ public class GameController {
 
                 //todo POZOR ako kukas, ci prve vazenie a tak dynamit abo naspak jak to ma byt...
 
-                if (checkForBlueCards(playingPlayer) == 11 || checkForBlueCards(playingPlayer) == 12) {
+                int blueResults = checkForBlueCards(playingPlayer);
+                if (blueResults == 11 || blueResults == 12) {
                     System.out.println("Bohuzial, koncis svoj tah...");
                 } else {
                     System.out.println("Tvoj tah pokracuje");
@@ -71,7 +72,7 @@ public class GameController {
                 }
             }
     }
-
+    // TODO BIELA KAVA + 2eura = BIELA KAVA + 2.50 vydavok
     public void secondPhaseRoundChoice(Player playingPlayer, int indexPlayer) {
         boolean continueBool = true;
         while (continueBool) {
@@ -120,6 +121,12 @@ public class GameController {
             if (p.getLives() <= 0) {
                 p.playerDie(players, removedPlayingCards, indexPlayer);
                 iterator.remove();
+                if (players.size()==1){
+                    System.out.println("KONIEC HRY");
+                    System.out.println("VYHRAL HRAC "+players.get(0).getName());
+                    System.out.println("SI UZASNY");
+                    System.exit(0);
+                }
 
 
 
