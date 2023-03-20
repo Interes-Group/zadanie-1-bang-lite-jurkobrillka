@@ -38,11 +38,11 @@ public class Prigione extends BlueCard{
         int prisonCHance = (int) Math.floor(Math.random() *(4 - 1 + 1) + 1);
 
         if (prisonCHance==4){
-            System.out.println("Si vo vazeni, pokracuje dalsi hrac, kartu ti berieme");
+            System.out.println("Si vo vazeni, pokracuje dalsi hrac, kartu ti berieme :" + prisonCHance);
             return 1;
         }
         else {
-            System.out.println("Vyhol si sa vazeniu, kartu ti berieme");
+            System.out.println("Vyhol si sa vazeniu, kartu ti berieme :"+ prisonCHance);
             return 2;
         }
     }

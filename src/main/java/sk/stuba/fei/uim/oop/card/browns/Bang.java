@@ -30,28 +30,28 @@ public class Bang extends BrownCard{
 
         //pozeram ci ma vedle
         //ale predtym pozeram ci ma doriti ten posraty bang
-        Barile barel = new Barile("Barel");
-        for (int i = 0; i <1 ; i++) {
+        boolean canContinue = true;
 
-            if (attackedPlayer.getTableCards().contains(barel)){
-                if (barel.useCard(attackedPlayer, players) == 1){
-                    //trafil barel, vyskakujes z loopu, ides dalej v hre
-                    break;
+            for (PlayingCard pc: attackedPlayer.getTableCards()){
+                if (pc instanceof Barile){
+                    if (pc.useCard(attackedPlayer, players) == 1){
+                        System.out.println("Hrac to trafil do barelu, este ze ho mas.");
+                        canContinue = false;
+                        break;
+                    }
                 }
             }
 
-                //nema barel, alebo ma ale netrafil d neho takze nevyskocil z loopu idem kukat ci nema vedle
-                PlayingCard mancato = new Mancato("Vedla");
-                boolean helpJesusBoolean = false;
+            if (canContinue){
+                boolean mancatoContinue = false;
                 for (PlayingCard cardMan: attackedPlayer.getHandCards()){
                     if (cardMan instanceof Mancato){
-                        helpJesusBoolean = true;
+                        mancatoContinue = true;
                         break;
                     }
                 }
 
-                if (helpJesusBoolean){
-                    //ma vedle, odstranim mu vedle
+                if (mancatoContinue){
                     for (int j = 0; j < attackedPlayer.getHandCards().size(); j++) {
                         if (attackedPlayer.getHandCards().get(j) instanceof Mancato){
                             attackedPlayer.getHandCards().remove(j);
@@ -65,12 +65,7 @@ public class Bang extends BrownCard{
                     int atpLives = attackedPlayer.getLives();
                     attackedPlayer.setLives(atpLives-1);
                 }
-
-
-        }
-
-
-
+            }
         return null;
     }
 }

@@ -41,7 +41,7 @@ public class Dinamite extends BlueCard {
             else return 10;
 
         } else {
-            System.out.println("Nebuchol si (jes!)");
+            System.out.println("Nebuchol si (jes!): "+boomChance);
             Player pBefore = whoIsPlayerBefore(playingPlayer,players);
             System.out.println("Posuvas hracovi "+pBefore.getName()+" kartu dynamit :P ");
             pBefore.addCardToTable(new Dinamite("Dynamit"));

@@ -17,15 +17,10 @@ public class Barile extends BlueCard{
 
     @Override
     public int useCard(Player player, List<Player> players) {
-        int boomChance = (int) Math.floor(Math.random() *(4 - 1 + 1) + 1);//rn.nextInt(8) + 1; //TODO TU VYSKUSAT CI BUCHNE A CI SA POSUNIE KARTE DRUHEMU HRACOVI
+        int boomChance = (int) Math.floor(Math.random() *(4 - 1 + 1) + 1); //TODO TU VYSKUSAT CI BUCHNE A CI SA POSUNIE KARTE DRUHEMU HRACOVI
         if (boomChance == 4) {
-            //bomb has exploded
-            System.out.println("Hrac to trafil do barelu, este ze ho mas.");
-            // TODO removeTableCard(dynamiteCard);
             return 1;
         } else {
-            // TODO removeTableCard(dynamiteCard);
-            System.out.println("Nestihol si sa skryt za barel...");
             return 2;
         }
     }
