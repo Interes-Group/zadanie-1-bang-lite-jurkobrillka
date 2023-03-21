@@ -64,14 +64,11 @@ public class Prigione extends BlueCard{
             }
         }
 
+        //TODO change x
+        puttingCardOnTable(new Prigione("Vazenie"),poorPlayer);
         if (canIPutOnTheTable){
             poorPlayer.getTableCards().add(new Prigione("Vazenie"));
             System.out.println("Pokladas pred hraca "+poorPlayer.getName()+" kartu vazenie");
-            for (int i = 0; i < byPlayer.getHandCards().size(); i++){
-                if (byPlayer.getHandCards().get(i) instanceof Prigione){
-                    break;
-                }
-            }
         }
 
         return null;

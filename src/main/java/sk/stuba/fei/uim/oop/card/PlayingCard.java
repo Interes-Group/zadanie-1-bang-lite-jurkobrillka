@@ -54,14 +54,4 @@ public abstract class PlayingCard {
         System.out.println("Vybral si si hraca s menom: "+players.get(indexPlayer-1).getName());
         return players.get(indexPlayer-1);
     }
-
-    //TODO
-    public void removeFromHand(Player byPlayer, ArrayList<PlayingCard> handList /*Object o*/){
-        /*for (int i = 0; i < handList.size(); i++){
-            if (handList.get(i) instanceof o){
-                handList.remove(i);
-                break;
-            }
-        } */
-    }
 }

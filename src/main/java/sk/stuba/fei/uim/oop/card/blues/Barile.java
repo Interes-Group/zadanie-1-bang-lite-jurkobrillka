@@ -43,16 +43,12 @@ public class Barile extends BlueCard{
                 break;
             }
         }
-
+        //TODO new
         if (canIPutOnTheTable){
-            System.out.println("Predkladas pred seba Barel.");
-            byPlayer.getTableCards().add(new Barile("Barel"));
-            //TODO REMOVE FROM HAND
-            for (int i = 0; i < byPlayer.getHandCards().size(); i++){
-                if (byPlayer.getHandCards().get(i) instanceof Barile){
-                    break;
-                }
-            }
+            puttingCardOnTable(new Barile("Barel"),byPlayer);
+            //System.out.println("Predkladas pred seba Barel.");
+            //byPlayer.getTableCards().add(new Barile("Barel"));
+
         }
 
         return null;

@@ -23,13 +23,10 @@ public class Bang extends BrownCard{
 
     @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
-        //vyberam hraca na ktoreho budem strielat
+        //vyberam hraca na ktoreho budem strielat, spravny sposob potvrdeny cviciacou Ing. Vanesou Andicsovou 14.3.2023
         Player attackedPlayer = choicePlayerToBeAttacked(byPlayer,players);
         System.out.println("Ides zautocit na "+attackedPlayer.getName());
 
-
-        //pozeram ci ma vedle
-        //ale predtym pozeram ci ma doriti ten posraty bang
         boolean canContinue = true;
 
             for (PlayingCard pc: attackedPlayer.getTableCards()){

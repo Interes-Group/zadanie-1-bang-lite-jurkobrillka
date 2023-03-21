@@ -70,16 +70,11 @@ public class Dinamite extends BlueCard {
                 break;
             }
         }
-
+        //TODO controll
         if (canIPutOnTheTable){
-            System.out.println("Vkladas pred seba dynamit");
-            byPlayer.getTableCards().add(new Dinamite("Dynamit"));
-
-            for (int i = 0; i < byPlayer.getHandCards().size(); i++){
-                if (byPlayer.getHandCards().get(i) instanceof Dinamite){
-                    break;
-                }
-            }
+            puttingCardOnTable(new Dinamite("Dynamit"),byPlayer);
+            //System.out.println("Vkladas pred seba dynamit");
+            //byPlayer.getTableCards().add(new Dinamite("Dynamit"));
         }
 
         return null;

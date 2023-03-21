@@ -92,10 +92,8 @@ public class Player {
             bc.useCard(playingCards, this, players);
         }
     }
-    public void playerDie(List<Player> players, Stack<PlayingCard> removedPlayingCards, int indexPlayer) {
+    public void playerDie(Stack<PlayingCard> removedPlayingCards) {
         System.out.println("Hrac " + name + " stratil vsetky zivoty, umiera");
-        indexPlayer--;
-        //players.remove(this);
         for (PlayingCard bc : handCards) {
             removedPlayingCards.push(bc);
         }

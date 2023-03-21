@@ -23,60 +23,59 @@ public class GameController {
         gameHearth();
     }
 
-    private String[] names = {"Emiliano", "Pablo", "Chuan", "Jozko"};
+    private final String[] names = {"Emiliano", "Pablo", "Chuan", "Jozko"};
 
-    private Stack<PlayingCard> playingCards = new Stack<>();
+    private final Stack<PlayingCard> playingCards = new Stack<>();
 
-    private Stack<PlayingCard> removedPlayingCards = new Stack<>();
+    private final Stack<PlayingCard> removedPlayingCards = new Stack<>();
 
-    private List<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
 
     public void gameHearth() {
-            boolean tr = true;
-            int i = 0;
-            int indexPlayer = 0;
-            int beforeLen=0;
-            while (tr) {
-                beforeLen=players.size();
-                indexPlayer = i % players.size();
-                System.out.println("Na rade je hrac " + players.get(indexPlayer).getName());
+        boolean tr = true;
+        int i = 0;
+        int indexPlayer = 0;
+        int beforeLen = 0;
+        while (tr) {
+            beforeLen = players.size();
+            indexPlayer = i % players.size();
+            System.out.println("Na rade je hrac " + players.get(indexPlayer).getName());
 
-                Player playingPlayer = players.get(indexPlayer);
-                System.out.println("Na rade je hrac: " + playingPlayer.getName());
+            Player playingPlayer = players.get(indexPlayer);
+            System.out.println("Na rade je hrac: " + playingPlayer.getName());
 
-                //todo POZOR ako kukas, ci prve vazenie a tak dynamit abo naspak jak to ma byt...
+            //todo POZOR ako kukas, ci prve vazenie a tak dynamit abo naspak jak to ma byt...
 
-                int blueResults = checkForBlueCards(playingPlayer);
-                if (blueResults == 11 || blueResults == 12) {
-                    System.out.println("Bohuzial, koncis svoj tah...");
-                } else {
-                    System.out.println("Tvoj tah pokracuje");
-                    System.out.println("Tahas si 2 karty...");
-                    System.out.println("TURURU: " + playingPlayer.getTableCards().size());
-                    checkDeathAndCommit(i);
+            int blueResults = checkForBlueCards(playingPlayer);
+            if (blueResults == 11 || blueResults == 12) {
+                System.out.println("Bohuzial, koncis svoj tah...");
+            } else {
+                System.out.println("Tvoj tah pokracuje");
+                checkDeathAndCommit();
+                //TODO PRUSER VYBUCHOL MAL ZOMRIET ALE NEZOMREL, lebo asi prve tahal na dynamite a tak ine....
+                System.out.println("Tahas si 2 karty...");
+                System.out.println("TURURU: " + playingPlayer.getTableCards().size());
 
-                    firstPhasePickingCards(playingPlayer);
 
-                    secondPhaseRoundChoice(playingPlayer, i);
+                firstPhasePickingCards(playingPlayer);
 
-                }
-                i++;
-                i = i- (beforeLen-players.size());
-                for (int j = 0; j <players.size() ; j++) {
-                    System.out.println("Meno: "+players.get(j).getName()+" - "+j);
-                }
+                secondPhaseRoundChoice(playingPlayer, i);
 
-                /*if (players.size() == 1){
-                    tr=false;
-                }*/
             }
+            i++;
+            i = i - (beforeLen - players.size());
+            for (int j = 0; j < players.size(); j++) {
+                System.out.println("Meno: " + players.get(j).getName() + " - " + j);
+            }
+
+        }
     }
-    // TODO BIELA KAVA + 2eura = BIELA KAVA + 2.50 vydavok
+
     public void secondPhaseRoundChoice(Player playingPlayer, int indexPlayer) {
         boolean continueBool = true;
         while (continueBool) {
-            checkDeathAndCommit(indexPlayer);
+            checkDeathAndCommit();
             roundMenu();
             int menuChoice = ZKlavesnice.readInt("Zvol jednu z moznosti: ");
             if (menuChoice < 1 || menuChoice > 3) {
@@ -89,8 +88,7 @@ public class GameController {
                         break;
                     case 2:
                         //zahraj kartu
-                        playingPlayer.playingSpecificHandCard(playingCards,players);
-                        //playingSpecificHandCard(playingPlayer);
+                        playingPlayer.playingSpecificHandCard(playingCards, players);
                         System.out.println("hrajem kartu");
                         break;
                     case 3:
@@ -112,22 +110,21 @@ public class GameController {
 
     }
 
-    private void checkDeathAndCommit(int indexPlayer) {
+    private void checkDeathAndCommit() {
 
         //TODO iterator
         Iterator<Player> iterator = players.iterator();
         while (iterator.hasNext()) {
             Player p = iterator.next();
             if (p.getLives() <= 0) {
-                p.playerDie(players, removedPlayingCards, indexPlayer);
+                p.playerDie(removedPlayingCards);
                 iterator.remove();
-                if (players.size()==1){
+                if (players.size() == 1) {
                     System.out.println("KONIEC HRY");
-                    System.out.println("VYHRAL HRAC "+players.get(0).getName());
+                    System.out.println("VYHRAL HRAC " + players.get(0).getName());
                     System.out.println("SI UZASNY");
                     System.exit(0);
                 }
-
 
 
             }
@@ -136,9 +133,6 @@ public class GameController {
     }
 
     private int checkForBlueCards(Player playingPlayer) {
-
-        //IDEM ROBIT normalne s hracmi vo funkcii jebal to pes SPRAV 2 verzie, ukaz na cviku...
-        //TODO
 
         int retAction = 0;
         //TODO CONTROL
@@ -158,9 +152,7 @@ public class GameController {
     public void firstPhasePickingCards(Player player) {
 
         for (int i = 0; i < 2; i++) {
-            //pozeram ci balik neni prazdny
             checkIfplayingCardsEmpty();
-            //ak je aj prezdny, opravi a mozem tahat
             player.addCardToHand(playingCards.pop());
         }
         System.out.println("");
@@ -177,7 +169,6 @@ public class GameController {
     public void checkIfplayingCardsEmpty() {
         if (playingCards.size() == 0) {
             System.out.println("-----------0 kariet v balicku, doplnime pomiesame-----------------------");
-            //TODO SKACE ERROR lebo este nedavam nic do removed
             reffilPlayingCardPack();
         }
     }
@@ -186,37 +177,6 @@ public class GameController {
         playingCards.addAll(removedPlayingCards);
         removedPlayingCards.clear();
         Collections.shuffle(playingCards);
-    }
-
-    public boolean prisonChecking(Player playingPlayer) {
-        int prisonActions = playingPlayer.prisonAction();
-        if (prisonActions < 3) {
-            //hrac ma kartu vazenie
-            removedPlayingCards.add(new Prigione("Vazenie"));
-
-            if (prisonActions == 1) {
-                //je vo vazeni taze musi sa v hlavnom breaknut jeho tah TODO
-                return false;
-            } else {
-                //neni vo vazeni, pokracuje
-                return true;
-            }
-        } else {
-            System.out.println("Nemas pred sebou vazenie");
-            return true;
-            //hrac nema kartu vazenie
-        }
-    }
-
-
-    public Player whoIsPlayerBefore(Player playingPlayer) {
-
-        for (int i = 1; i < players.size(); i++) {
-            if (players.get(i) == playingPlayer) {
-                return players.get(i - 1);
-            }
-        }
-        return players.get(players.size() - 1);
     }
 
     public void lorePrint() {
@@ -242,7 +202,6 @@ public class GameController {
         for (int i = 0; i < 2; i++) {
             playingCards.add(new Barile("Barel"));
         }
-
 
         //creating Brown cards
         for (int i = 0; i < 30; i++) {
@@ -297,52 +256,6 @@ public class GameController {
             }
         }
 
-    }
-
-    /*public void playingSpecificHandCard(Player player) {
-        System.out.println("chces zahrat nejaku kartu, ukazem ti tvoje karty");
-        player.printPlayersCard();
-        if (player.getHandCards().size() == 0) {
-            System.out.println("Sak mas 0 kariet ty dilinko co chces hrat XD"); //uprav text dilino
-        } else {
-            int cardChoice = cardChoice(player);
-            PlayingCard bc = player.getHandCards().get(cardChoice);
-            System.out.println("SKUSAM KARTU ZABAVIC");
-            //TODO - vymazac sout chujovy
-            player.getHandCards().remove(bc);
-            bc.useCard(playingCards, player, players);
-        }
-    }*/
-
-    public int cardChoice(Player player) {
-        boolean goodChoice = true;
-        int indexCard = 0;
-        while (goodChoice) {
-            indexCard = ZKlavesnice.readInt("Zadaj poradove cislo karty (1-" + player.getHandCards().size() + ")");
-            if (indexCard < 1 || indexCard > player.getHandCards().size()) {
-                //vybral zle chujo pokracuje
-                badInputText();
-            } else {
-                goodChoice = false;
-            }
-        }
-        return indexCard - 1;
-    }
-
-
-    public Player oponentChoice(Player player) {
-        boolean goodChoice = true;
-        int indexCard = 0;
-        while (goodChoice) {
-            indexCard = ZKlavesnice.readInt("Zadaj poradove cislo hraca (1-" + players.size() + ")");
-            if (indexCard < 1 || indexCard > players.size()) {
-                //vybral zle chujo pokracuje
-                badInputText();
-            } else {
-                goodChoice = false;
-            }
-        }
-        return players.get(indexCard - 1);
     }
 
     public void startMenu() {
