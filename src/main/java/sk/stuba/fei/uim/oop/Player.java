@@ -6,10 +6,7 @@ import sk.stuba.fei.uim.oop.card.blues.Dinamite;
 import sk.stuba.fei.uim.oop.card.blues.Prigione;
 import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class Player {
 
@@ -61,6 +58,40 @@ public class Player {
         this.tableCards = tableCards;
     }
 
+    public int cardChoice() {
+        boolean goodChoice = true;
+        int indexCard = 0;
+        while (goodChoice) {
+            indexCard = ZKlavesnice.readInt("Zadaj poradove cislo karty (1-" + getHandCards().size() + ")");
+            if (indexCard < 1 || indexCard > getHandCards().size()) {
+                //vybral zle chujo pokracuje
+                badInputText();
+            } else {
+                goodChoice = false;
+            }
+        }
+        return indexCard - 1;
+    }
+
+    public void badInputText() {
+        System.out.println("Zadal si zly vstup, opakuj volbu prosim");
+    }
+
+
+    public void playingSpecificHandCard(Stack<PlayingCard> playingCards,List<Player> players) {
+        System.out.println("chces zahrat nejaku kartu, ukazem ti tvoje karty");
+        printPlayersCard();
+        if (getHandCards().size() == 0) {
+            System.out.println("Sak mas 0 kariet ty dilinko co chces hrat XD"); //uprav text dilino
+        } else {
+            int cardChoice = cardChoice();
+            PlayingCard bc = getHandCards().get(cardChoice);
+            System.out.println("SKUSAM KARTU ZABAVIC");
+            //TODO - vymazac sout chujovy
+            this.getHandCards().remove(bc);
+            bc.useCard(playingCards, this, players);
+        }
+    }
     public void playerDie(List<Player> players, Stack<PlayingCard> removedPlayingCards, int indexPlayer) {
         System.out.println("Hrac " + name + " stratil vsetky zivoty, umiera");
         indexPlayer--;

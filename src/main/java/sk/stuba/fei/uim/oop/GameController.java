@@ -67,9 +67,9 @@ public class GameController {
                     System.out.println("Meno: "+players.get(j).getName()+" - "+j);
                 }
 
-                if (players.size() == 1){
+                /*if (players.size() == 1){
                     tr=false;
-                }
+                }*/
             }
     }
     // TODO BIELA KAVA + 2eura = BIELA KAVA + 2.50 vydavok
@@ -89,8 +89,8 @@ public class GameController {
                         break;
                     case 2:
                         //zahraj kartu
-                        //TODO ZVOL CI CHES KARTY Z RUKY NA STOL DAT
-                        playingSpecificHandCard(playingPlayer);
+                        playingPlayer.playingSpecificHandCard(playingCards,players);
+                        //playingSpecificHandCard(playingPlayer);
                         System.out.println("hrajem kartu");
                         break;
                     case 3:
@@ -299,7 +299,7 @@ public class GameController {
 
     }
 
-    public void playingSpecificHandCard(Player player) {
+    /*public void playingSpecificHandCard(Player player) {
         System.out.println("chces zahrat nejaku kartu, ukazem ti tvoje karty");
         player.printPlayersCard();
         if (player.getHandCards().size() == 0) {
@@ -311,9 +311,8 @@ public class GameController {
             //TODO - vymazac sout chujovy
             player.getHandCards().remove(bc);
             bc.useCard(playingCards, player, players);
-
         }
-    }
+    }*/
 
     public int cardChoice(Player player) {
         boolean goodChoice = true;
