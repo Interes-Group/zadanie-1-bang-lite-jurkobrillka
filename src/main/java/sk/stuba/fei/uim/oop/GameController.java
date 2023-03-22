@@ -44,6 +44,7 @@ public class GameController {
             int blueResults = checkForBlueCards(playingPlayer);
             if (blueResults == 11 || blueResults == 12) {
                 System.out.println("Bohuzial, koncis svoj tah...");
+                break;
             } else {
                 System.out.println("Tvoj tah pokracuje");
                 checkDeathAndCommit();
