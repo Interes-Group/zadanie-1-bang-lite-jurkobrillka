@@ -52,10 +52,6 @@ public class Dinamite extends BlueCard {
 
     }
 
-    @Override
-    public int useCard(GameController gameController) {
-        return 0;
-    }
 
     @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {

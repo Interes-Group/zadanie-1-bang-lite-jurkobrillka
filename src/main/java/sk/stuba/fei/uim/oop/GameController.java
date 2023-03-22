@@ -34,17 +34,11 @@ public class GameController {
 
     public void gameHearth() {
         boolean tr = true;
-        int i = 0;
         int indexPlayer = 0;
-        int beforeLen = 0;
+
         while (tr) {
-            beforeLen = players.size();
-            indexPlayer = i % players.size();
-            System.out.println("Na rade je hrac " + players.get(indexPlayer).getName());
 
             Player playingPlayer = players.get(indexPlayer);
-            System.out.println("Na rade je hrac: " + playingPlayer.getName());
-
             //todo POZOR ako kukas, ci prve vazenie a tak dynamit abo naspak jak to ma byt...
 
             int blueResults = checkForBlueCards(playingPlayer);
@@ -53,26 +47,26 @@ public class GameController {
             } else {
                 System.out.println("Tvoj tah pokracuje");
                 checkDeathAndCommit();
-                //TODO PRUSER VYBUCHOL MAL ZOMRIET ALE NEZOMREL, lebo asi prve tahal na dynamite a tak ine....
-                System.out.println("Tahas si 2 karty...");
-                System.out.println("TURURU: " + playingPlayer.getTableCards().size());
-
 
                 firstPhasePickingCards(playingPlayer);
 
-                secondPhaseRoundChoice(playingPlayer, i);
+                secondPhaseRoundChoice(playingPlayer);
 
             }
-            i++;
-            i = i - (beforeLen - players.size());
-            for (int j = 0; j < players.size(); j++) {
-                System.out.println("Meno: " + players.get(j).getName() + " - " + j);
-            }
+            //i++;
+            //i = i - (beforeLen - players.size());
+            indexPlayer = playingPlayer.nextPlayer(players);
+            /*for (int j = 0; j < players.size(); j++) {
+                if (players.get(j).getName().equals(playingPlayer.getName())){
+                    indexPlayer = ((j+1)%players.size());
+                    break;
+                }
+            }*/
 
         }
     }
 
-    public void secondPhaseRoundChoice(Player playingPlayer, int indexPlayer) {
+    public void secondPhaseRoundChoice(Player playingPlayer) {
         boolean continueBool = true;
         while (continueBool) {
             checkDeathAndCommit();
@@ -151,6 +145,7 @@ public class GameController {
 
     public void firstPhasePickingCards(Player player) {
 
+        System.out.println("Faza c.1: Tahas si 2 karty");
         for (int i = 0; i < 2; i++) {
             checkIfplayingCardsEmpty();
             player.addCardToHand(playingCards.pop());

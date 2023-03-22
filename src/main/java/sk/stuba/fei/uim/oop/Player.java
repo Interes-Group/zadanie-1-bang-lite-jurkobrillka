@@ -155,8 +155,18 @@ public class Player {
             for (int j = 1; j <handCards.size()+1 ; j++) {
                 System.out.print(j+"., ");
             }
-            int unwantedCard = ZKlavesnice.readInt("Zadaj poradove cislo");
+            int unwantedCard = 0;
             //TODO OSETRI VSTUP TERAZ SA MI NECHCE!!!
+            boolean badInput = true;
+            while (badInput){
+                unwantedCard = ZKlavesnice.readInt("Zadaj poradove cislo");
+                if (unwantedCard<=0 || unwantedCard>handCards.size()){
+                    badInputText();
+                }
+                else {
+                    badInput = false;
+                }
+            }
             PlayingCard remExample = handCards.get(unwantedCard-1);
             removedPlayingCards.add(remExample);
             handCards.remove(remExample);
@@ -213,5 +223,16 @@ public class Player {
         tableCards.remove(bc);
     }
 
+    public int nextPlayer(List<Player> players){
+        for (int j = 0; j < players.size(); j++) {
+            if (players.get(j).getName().equals(this.getName())){
+                System.out.println("Na rade je hrac: " + players.get(((j+1)%players.size())).getName());
+                return ((j+1)%players.size());
+            }
+        }
+
+        return 0;
+
+    }
 
 }

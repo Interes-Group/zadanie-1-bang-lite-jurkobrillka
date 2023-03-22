@@ -34,21 +34,6 @@ public class Prigione extends BlueCard{
 
     }
 
-    @Override
-    public int useCard(GameController gameController) {
-        int prisonCHance = (int) Math.floor(Math.random() *(4 - 1 + 1) + 1);
-
-        if (prisonCHance==4){
-            System.out.println("Si vo vazeni, pokracuje dalsi hrac, kartu ti berieme :" + prisonCHance);
-            System.out.println("MOREEE");
-            return 1;
-        }
-        else {
-            System.out.println("Vyhol si sa vazeniu, kartu ti berieme :"+ prisonCHance);
-            System.out.println("MOREEE");
-            return 2;
-        }
-    }
 
     @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
@@ -65,10 +50,9 @@ public class Prigione extends BlueCard{
         }
 
         //TODO change x
-        puttingCardOnTable(new Prigione("Vazenie"),poorPlayer);
+
         if (canIPutOnTheTable){
-            poorPlayer.getTableCards().add(new Prigione("Vazenie"));
-            System.out.println("Pokladas pred hraca "+poorPlayer.getName()+" kartu vazenie");
+            puttingCardOnTable(new Prigione("Vazenie"),poorPlayer);
         }
 
         return null;
