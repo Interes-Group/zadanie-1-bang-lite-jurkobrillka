@@ -6,7 +6,6 @@ import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Stack;
 
 public class CatBalou extends BrownCard{
@@ -25,14 +24,15 @@ public class CatBalou extends BrownCard{
         System.out.println("Zadaj komu chces nieco ukradnut: ");
         Player poorPlayer = choicePlayerToBeAttacked(byPlayer,players);
 
-        int indexCard = 0;
-        if (ZKlavesnice.readString(("Zadaj ci chces ukradnut z ruky alebo zo stola (1/0): ")).equals("1")) {
-            //z ruky
-
+        int indexCard;
+        System.out.println((("Zadaj ci chces ukradnut z ruky (pocet kariet: "+poorPlayer.getHandCards().size()+")alebo zo stola (pocet kariet: "+poorPlayer.getTableCards().size()+")")));
+        if (ZKlavesnice.readString("Z ruky: zadaj 1\nZo stola: zadaj 2").equals("1")) {
             if (poorPlayer.getHandCards().isEmpty()) {
                 System.out.println("Nema ziadne karty na ruke");
             } else {
             while (true) {
+
+
                 System.out.println("Zadaj poradove cislo ktoru kartu z ruky chces ukradnut: ");
                 for (int j = 0; j < poorPlayer.getHandCards().size(); j++) {
                     System.out.print("(" + (j + 1) + ".), ");

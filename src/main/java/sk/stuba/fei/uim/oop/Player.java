@@ -82,12 +82,10 @@ public class Player {
         System.out.println("chces zahrat nejaku kartu, ukazem ti tvoje karty");
         printPlayersCard();
         if (getHandCards().size() == 0) {
-            System.out.println("Sak mas 0 kariet ty dilinko co chces hrat XD"); //uprav text dilino
+            System.out.println("Mas 0 kariet, nemas co hrat..."); //uprav text dilino
         } else {
             int cardChoice = cardChoice();
             PlayingCard bc = getHandCards().get(cardChoice);
-            System.out.println("SKUSAM KARTU ZABAVIC");
-            //TODO - vymazac sout chujovy
             this.getHandCards().remove(bc);
             bc.useCard(playingCards, this, players);
         }
@@ -103,18 +101,6 @@ public class Player {
 
     }
 
-    public int prisonAction(){
-        for (int i = 0; i <tableCards.size() ; i++) {
-            if (tableCards.get(i) instanceof Prigione){
-                BlueCard bc = (BlueCard) tableCards.get(i);
-                removeTableCard(bc);
-                return 10;//bc.useCard(this,);
-            }
-        }
-        return 3;
-
-
-    }
 
     public void addCardToTable(PlayingCard pc){
         System.out.println("Hrac "+this.name+" ziskava kartu: "+pc.getTitle());
@@ -202,22 +188,6 @@ public class Player {
         }
     }
 
-    public int dynamiteAction(Random rn) {
-        for (int i = 0; i <tableCards.size() ; i++) {
-            if (tableCards.get(i) instanceof Dinamite){
-                System.out.println("NO BOHA TU SOM");
-                BlueCard dc = (BlueCard) tableCards.get(i);
-                removeTableCard(tableCards.get(i));
-                return 10;//dc.useCard(this);
-            }
-        }
-        //WORKING ON ZE NEREGISTRUJE BARELL ANI VAZENIE TODO
-        System.out.println("Nemas pred sebou dynamit");
-        return 3;
-        //TODO NEMAS PORIESENE ZE POJDE DALSIEMU HRACOVI, SPRAVIT!!! - fakt nemas? bo mne sa zda ze hej
-
-
-    }
 
     public void removeTableCard(PlayingCard bc){
         tableCards.remove(bc);

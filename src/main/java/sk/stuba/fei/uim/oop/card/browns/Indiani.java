@@ -33,7 +33,7 @@ public class Indiani extends BrownCard{
                 if (!isBang){
                     int livesBfr = player.getLives();
                     player.setLives(livesBfr-1);
-                    System.out.println("Hrac straca zivot, nema bang");
+                    System.out.println("Hrac "+player.getName()+" straca zivot, nema bang");
                 }
             }
 

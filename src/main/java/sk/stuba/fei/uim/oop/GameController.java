@@ -2,7 +2,6 @@ package sk.stuba.fei.uim.oop;
 
 import sk.stuba.fei.uim.oop.card.PlayingCard;
 import sk.stuba.fei.uim.oop.card.blues.Barile;
-import sk.stuba.fei.uim.oop.card.blues.BlueCard;
 import sk.stuba.fei.uim.oop.card.blues.Dinamite;
 import sk.stuba.fei.uim.oop.card.blues.Prigione;
 import sk.stuba.fei.uim.oop.card.browns.*;
@@ -12,18 +11,8 @@ import java.util.*;
 
 public class GameController {
 
-    Random rn = new Random();
 
-    public GameController() {
-        lorePrint();
-        initializeCards();
-        initializePlayers();
-        startMenu();
-
-        gameHearth();
-    }
-
-    private final String[] names = {"Emiliano", "Pablo", "Chuan", "Jozko"};
+    private static final String[] NAMES = {"Emiliano", "Pablo", "Chuan", "Jozko"};
 
     private final Stack<PlayingCard> playingCards = new Stack<>();
 
@@ -31,12 +20,19 @@ public class GameController {
 
     private final List<Player> players = new ArrayList<>();
 
+    public GameController() {
+        lorePrint();
+        initializeCards();
+        initializePlayers();
+        startMenu();
+        gameHearth();
+    }
 
     public void gameHearth() {
-        boolean tr = true;
+        System.out.println("Na rade je hrac: " + players.get(0).getName());
         int indexPlayer = 0;
 
-        while (tr) {
+        while (true) {
 
             Player playingPlayer = players.get(indexPlayer);
             //todo POZOR ako kukas, ci prve vazenie a tak dynamit abo naspak jak to ma byt...
@@ -44,26 +40,16 @@ public class GameController {
             int blueResults = checkForBlueCards(playingPlayer);
             if (blueResults == 11 || blueResults == 12) {
                 System.out.println("Bohuzial, koncis svoj tah...");
-                break;
             } else {
-                System.out.println("Tvoj tah pokracuje");
                 checkDeathAndCommit();
+                System.out.println("Tvoj tah pokracuje");
 
                 firstPhasePickingCards(playingPlayer);
 
                 secondPhaseRoundChoice(playingPlayer);
 
             }
-            //i++;
-            //i = i - (beforeLen - players.size());
             indexPlayer = playingPlayer.nextPlayer(players);
-            /*for (int j = 0; j < players.size(); j++) {
-                if (players.get(j).getName().equals(playingPlayer.getName())){
-                    indexPlayer = ((j+1)%players.size());
-                    break;
-                }
-            }*/
-
         }
     }
 
@@ -78,21 +64,15 @@ public class GameController {
             } else {
                 switch (menuChoice) {
                     case 1:
-                        //pozri karty
                         playingPlayer.printCurrentStatus();
                         break;
                     case 2:
-                        //zahraj kartu
                         playingPlayer.playingSpecificHandCard(playingCards, players);
-                        System.out.println("hrajem kartu");
                         break;
                     case 3:
-                        //koniec
+                        continueBool = false;
                         if (playingPlayer.tooManyCards()) {
                             playingPlayer.removeRedundantCards(removedPlayingCards);
-                            continueBool = false;
-                        } else {
-                            continueBool = false;
                         }
 
                         break;
@@ -101,9 +81,6 @@ public class GameController {
         }
     }
 
-    public void gameRound() {
-
-    }
 
     private void checkDeathAndCommit() {
 
@@ -115,9 +92,7 @@ public class GameController {
                 p.playerDie(removedPlayingCards);
                 iterator.remove();
                 if (players.size() == 1) {
-                    System.out.println("KONIEC HRY");
-                    System.out.println("VYHRAL HRAC " + players.get(0).getName());
-                    System.out.println("SI UZASNY");
+                    System.out.println("KONIEC HRY\nVYHRAL HRAC: " + players.get(0).getName() + " -> SI UZASNY");
                     System.exit(0);
                 }
 
@@ -130,14 +105,12 @@ public class GameController {
     private int checkForBlueCards(Player playingPlayer) {
 
         int retAction = 0;
-        //TODO CONTROL
         Iterator<PlayingCard> iterator = playingPlayer.getTableCards().iterator();
         while (iterator.hasNext()) {
             PlayingCard pc = iterator.next();
             retAction = pc.useCard(playingPlayer, players);
             if (retAction > 2) {
-                iterator.remove(); // odstránenie prvku pomocou iterátora
-                //TODO CONTROL
+                iterator.remove();
             }
         }
 
@@ -151,11 +124,9 @@ public class GameController {
             checkIfplayingCardsEmpty();
             player.addCardToHand(playingCards.pop());
         }
-        System.out.println("");
     }
 
     public void roundMenu() {
-        //menu po potiahnuti dvoch kariet
         System.out.println("Zvol moznost z menu: ");
         System.out.println("1. pozri si svoje karty a pocet zivotov");
         System.out.println("2. Zahraj kartu");
@@ -188,7 +159,6 @@ public class GameController {
 
     public void initializeCards() {
 
-        //creating Blue Cards
         playingCards.add(new Dinamite("Dynamit"));
 
         for (int i = 0; i < 3; i++) {
@@ -199,7 +169,6 @@ public class GameController {
             playingCards.add(new Barile("Barel"));
         }
 
-        //creating Brown cards
         for (int i = 0; i < 30; i++) {
             playingCards.add(new Bang("Bang"));
         }
@@ -238,14 +207,13 @@ public class GameController {
             } else {
                 System.out.println("\nIdem nastavovat " + playersCount + " hracov: ");
                 for (int i = 0; i < playersCount; i++) {
-                    //vyberanie kariet hracovi
                     ArrayList<PlayingCard> playersCard = new ArrayList<>();
                     for (int j = 0; j < 4; j++) {
                         playersCard.add(playingCards.pop());
                     }
                     System.out.println("Nastavujeme " + (i + 1) + " hraca... ");
-                    players.add(new Player(names[i], 1, playersCard, new ArrayList<PlayingCard>()));
-                    System.out.println("Hotovo, hrac c." + (i + 1) + " s menom " + names[i] + " uspesne nastaveny\n");
+                    players.add(new Player(NAMES[i], 4, playersCard, new ArrayList<>()));
+                    System.out.println("Hotovo, hrac c." + (i + 1) + " s menom " + NAMES[i] + " uspesne nastaveny\n");
 
                 }
                 break;

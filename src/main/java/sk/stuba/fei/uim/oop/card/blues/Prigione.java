@@ -1,13 +1,11 @@
 package sk.stuba.fei.uim.oop.card.blues;
 
-import sk.stuba.fei.uim.oop.GameController;
+
 import sk.stuba.fei.uim.oop.Player;
 import sk.stuba.fei.uim.oop.card.PlayingCard;
-import sk.stuba.fei.uim.oop.card.browns.CatBalou;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Stack;
 
 public class Prigione extends BlueCard{
@@ -24,7 +22,6 @@ public class Prigione extends BlueCard{
         //chujovina pre iterator asi... player.removeTableCard(this);
         if (prisonCHance==4){
             System.out.println("Si vo vazeni, pokracuje dalsi hrac, kartu ti berieme");
-            System.out.println("Si vo vazeni, pokracuje dalsi hrac, kartu ti berieme :" + prisonCHance);
             return 11;
         }
         else {
