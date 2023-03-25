@@ -28,7 +28,7 @@ public class Diligenza extends BrownCard{
             byPlayer.getHandCards().add(pc);
             System.out.print(pc.getTitle()+", ");
         }
-        System.out.println("");
+        System.out.println();
         return null;
     }
 }

@@ -22,7 +22,7 @@ public class CatBalou extends BrownCard{
     @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
         System.out.println("Zadaj komu chces nieco ukradnut: ");
-        Player poorPlayer = choicePlayerToBeAttacked(byPlayer,players);
+        Player poorPlayer = byPlayer.choicePlayerToBeAttacked(byPlayer,players);
 
         int indexCard;
         System.out.println((("Zadaj ci chces ukradnut z ruky (pocet kariet: "+poorPlayer.getHandCards().size()+")alebo zo stola (pocet kariet: "+poorPlayer.getTableCards().size()+")")));
@@ -50,7 +50,6 @@ public class CatBalou extends BrownCard{
 
         }
         else {
-            //zo stola
             if (poorPlayer.getTableCards().isEmpty()) {
                 System.out.println("Nema ziadne karty na stole");
             } else {

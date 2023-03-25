@@ -1,9 +1,6 @@
 package sk.stuba.fei.uim.oop;
 
 import sk.stuba.fei.uim.oop.card.PlayingCard;
-import sk.stuba.fei.uim.oop.card.blues.BlueCard;
-import sk.stuba.fei.uim.oop.card.blues.Dinamite;
-import sk.stuba.fei.uim.oop.card.blues.Prigione;
 import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 
 import java.util.*;
@@ -11,7 +8,7 @@ import java.util.*;
 public class Player {
 
 
-    private String name;
+    private final String name;
 
     private int lives;
 
@@ -30,10 +27,6 @@ public class Player {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getLives() {
         return lives;
     }
@@ -46,17 +39,11 @@ public class Player {
         return handCards;
     }
 
-    public void setHandCards(List<PlayingCard> handCards) {
-        this.handCards = handCards;
-    }
 
     public List<PlayingCard> getTableCards() {
         return tableCards;
     }
 
-    public void setTableCards(List<PlayingCard> tableCards) {
-        this.tableCards = tableCards;
-    }
 
     public int cardChoice() {
         boolean goodChoice = true;
@@ -64,7 +51,6 @@ public class Player {
         while (goodChoice) {
             indexCard = ZKlavesnice.readInt("Zadaj poradove cislo karty (1-" + getHandCards().size() + ")");
             if (indexCard < 1 || indexCard > getHandCards().size()) {
-                //vybral zle chujo pokracuje
                 badInputText();
             } else {
                 goodChoice = false;
@@ -82,7 +68,7 @@ public class Player {
         System.out.println("chces zahrat nejaku kartu, ukazem ti tvoje karty");
         printPlayersCard();
         if (getHandCards().size() == 0) {
-            System.out.println("Mas 0 kariet, nemas co hrat..."); //uprav text dilino
+            System.out.println("Mas 0 kariet, nemas co hrat...");
         } else {
             int cardChoice = cardChoice();
             PlayingCard bc = getHandCards().get(cardChoice);
@@ -118,7 +104,6 @@ public class Player {
     }
 
     public boolean tooManyCards(){
-        //TODO
         if (handCards.size()>lives){
             System.out.println("Mas privela kariet, (musis mat max tolko kolko ma zivotov)");
             System.out.println("Potrebujes vyhodit "+(handCards.size()-lives)+" karty");
@@ -133,8 +118,6 @@ public class Player {
     public void removeRedundantCards(Stack<PlayingCard>removedPlayingCards){
         int redundantCards = handCards.size()-lives;
         System.out.println("Musis vyhodit "+redundantCards+" karty. Ukazem ti ich...");
-
-        //odstranovanie kariet
         for (int i = 0; i <redundantCards ; i++) {
             printPlayersDeckOfCards(handCards);
             System.out.print("Chcem vymazat kartu s poradim: ");
@@ -142,7 +125,6 @@ public class Player {
                 System.out.print(j+"., ");
             }
             int unwantedCard = 0;
-            //TODO OSETRI VSTUP TERAZ SA MI NECHCE!!!
             boolean badInput = true;
             while (badInput){
                 unwantedCard = ZKlavesnice.readInt("Zadaj poradove cislo");
@@ -156,8 +138,22 @@ public class Player {
             PlayingCard remExample = handCards.get(unwantedCard-1);
             removedPlayingCards.add(remExample);
             handCards.remove(remExample);
-            //DOCHUJA CELE ZLE - mozno ne uz asi opravene mozno -asik uz dobre
         }
+    }
+
+    public int checkForBlueCards(List<Player> players) {
+
+        int retAction = 0;
+        Iterator<PlayingCard> iterator = this.getTableCards().iterator();
+        while (iterator.hasNext()) {
+            PlayingCard pc = iterator.next();
+            retAction = pc.useCard(this, players);
+            if (retAction > 2) {
+                iterator.remove();
+            }
+        }
+
+        return retAction;
     }
 
 
@@ -184,13 +180,8 @@ public class Player {
                 System.out.print("("+indexhelping+".) "+pc.getTitle()+", ");
                 indexhelping++;
             }
-            System.out.println("");
+            System.out.println();
         }
-    }
-
-
-    public void removeTableCard(PlayingCard bc){
-        tableCards.remove(bc);
     }
 
     public int nextPlayer(List<Player> players){
@@ -200,9 +191,41 @@ public class Player {
                 return ((j+1)%players.size());
             }
         }
-
         return 0;
+    }
 
+    public Player choicePlayerToBeAttacked(Player byPlayer, List<Player> players){
+        System.out.println("Zadaj poradove cislo hraca na ktoreho chces zautocit touto kartou");
+        for (int i = 0; i <players.size() ; i++) {
+            System.out.print("("+(i+1)+"). "+players.get(i).getName()+", ");
+        }
+        int indexPlayer = 0;
+        boolean goodChoice = true;
+        while (goodChoice){
+            int plIndex = ZKlavesnice.readInt("Zadaj poradove cislo: ");
+            if (plIndex<1 || plIndex>players.size()){
+                System.out.println("Zadal si zly vstup, opakuj volbu prosim.");
+            }
+            else if (players.get(plIndex-1) == byPlayer){
+                System.out.println("Zadal si sam seba, opakuj volbu prosim.");
+            }
+            else {
+                indexPlayer = plIndex;
+                goodChoice = false;
+            }
+        }
+        System.out.println("Vybral si si hraca s menom: "+players.get(indexPlayer-1).getName());
+        return players.get(indexPlayer-1);
+    }
+
+
+    public Player whoIsPlayerBefore(List<Player> players){
+        for (int i = 1; i <players.size() ; i++) {
+            if (players.get(i) == this){
+                return players.get(i-1);
+            }
+        }
+        return players.get(players.size()-1);
     }
 
 }

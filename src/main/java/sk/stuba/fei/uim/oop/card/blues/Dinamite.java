@@ -1,12 +1,10 @@
 package sk.stuba.fei.uim.oop.card.blues;
 
-import sk.stuba.fei.uim.oop.GameController;
 import sk.stuba.fei.uim.oop.Player;
 import sk.stuba.fei.uim.oop.card.PlayingCard;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Stack;
 
 public class Dinamite extends BlueCard {
@@ -15,24 +13,11 @@ public class Dinamite extends BlueCard {
         super(title);
     }
 
-    public Player whoIsPlayerBefore(Player byPlayer, List<Player> players){
-        for (int i = 1; i <players.size() ; i++) {
-            if (players.get(i) == byPlayer){
-                return players.get(i-1);
-            }
-        }
-        return players.get(players.size()-1);
-    }
-
     @Override
     public int useCard(Player playingPlayer, List<Player> players) {
 
-        //remove from table asi okkocina iterator tA MAZEM... playingPlayer.removeTableCard(this);
-        int boomChance = (int) Math.floor(Math.random() *(8 - 1 + 1) + 1);//rn.nextInt(8) + 1; //TODO TU VYSKUSAT CI BUCHNE A CI SA POSUNIE KARTE DRUHEMU HRACOVI
-        if (boomChance != 15) {
-            //TODO zmen na ==8
-            //buchla bomba, zoberie mu zivoty, ale NEZDECHNE...
-            //TODO CONTROL
+        int boomChance = (int) Math.floor(Math.random() *(8 - 1 + 1) + 1);
+        if (boomChance ==8) {
             System.out.println("Buchol si :(");
             int livesBeforeBomb = playingPlayer.getLives();
             playingPlayer.setLives(livesBeforeBomb-3);
@@ -43,10 +28,9 @@ public class Dinamite extends BlueCard {
 
         } else {
             System.out.println("Nebuchol si (jes!): "+boomChance);
-            Player pBefore = whoIsPlayerBefore(playingPlayer,players);
+            Player pBefore = playingPlayer.whoIsPlayerBefore(players);
             System.out.println("Posuvas hracovi "+pBefore.getName()+" kartu dynamit :P ");
             pBefore.addCardToTable(new Dinamite("Dynamit"));
-            //posuvas inemu
             return 20;
         }
 
@@ -66,11 +50,8 @@ public class Dinamite extends BlueCard {
                 break;
             }
         }
-        //TODO controll
         if (canIPutOnTheTable){
             puttingCardOnTable(new Dinamite("Dynamit"),byPlayer);
-            //System.out.println("Vkladas pred seba dynamit");
-            //byPlayer.getTableCards().add(new Dinamite("Dynamit"));
         }
 
         return null;

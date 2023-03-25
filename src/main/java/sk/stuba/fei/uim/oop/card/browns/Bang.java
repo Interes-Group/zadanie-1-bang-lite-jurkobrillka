@@ -3,11 +3,9 @@ package sk.stuba.fei.uim.oop.card.browns;
 import sk.stuba.fei.uim.oop.Player;
 import sk.stuba.fei.uim.oop.card.PlayingCard;
 import sk.stuba.fei.uim.oop.card.blues.Barile;
-import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Stack;
 
 public class Bang extends BrownCard{
@@ -24,7 +22,7 @@ public class Bang extends BrownCard{
     @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
         //vyberam hraca na ktoreho budem strielat, spravny sposob potvrdeny cviciacou Ing. Vanesou Andicsovou 14.3.2023
-        Player attackedPlayer = choicePlayerToBeAttacked(byPlayer,players);
+        Player attackedPlayer = byPlayer.choicePlayerToBeAttacked(byPlayer,players);
         System.out.println("Ides zautocit na "+attackedPlayer.getName());
 
         boolean canContinue = true;

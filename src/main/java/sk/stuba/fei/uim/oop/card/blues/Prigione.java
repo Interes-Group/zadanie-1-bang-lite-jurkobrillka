@@ -19,7 +19,6 @@ public class Prigione extends BlueCard{
     public int useCard(Player player, List<Player> players) {
         int prisonCHance = (int) Math.floor(Math.random() *(4 - 1 + 1) + 1);
 
-        //chujovina pre iterator asi... player.removeTableCard(this);
         if (prisonCHance==4){
             System.out.println("Si vo vazeni, pokracuje dalsi hrac, kartu ti berieme");
             return 11;
@@ -35,7 +34,7 @@ public class Prigione extends BlueCard{
     @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
         System.out.println("Zadaj pred koho chces zadat vazenie: ");
-        Player poorPlayer = choicePlayerToBeAttacked(byPlayer,players);
+        Player poorPlayer = byPlayer.choicePlayerToBeAttacked(byPlayer,players);
         boolean canIPutOnTheTable = true;
         for (PlayingCard bc: poorPlayer.getTableCards()){
             if (bc instanceof Prigione){
@@ -45,8 +44,6 @@ public class Prigione extends BlueCard{
                 break;
             }
         }
-
-        //TODO change x
 
         if (canIPutOnTheTable){
             puttingCardOnTable(new Prigione("Vazenie"),poorPlayer);

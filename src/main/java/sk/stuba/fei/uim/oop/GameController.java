@@ -35,9 +35,8 @@ public class GameController {
         while (true) {
 
             Player playingPlayer = players.get(indexPlayer);
-            //todo POZOR ako kukas, ci prve vazenie a tak dynamit abo naspak jak to ma byt...
 
-            int blueResults = checkForBlueCards(playingPlayer);
+            int blueResults = playingPlayer.checkForBlueCards(players);
             if (blueResults == 11 || blueResults == 12) {
                 System.out.println("Bohuzial, koncis svoj tah...");
             } else {
@@ -84,7 +83,6 @@ public class GameController {
 
     private void checkDeathAndCommit() {
 
-        //TODO iterator
         Iterator<Player> iterator = players.iterator();
         while (iterator.hasNext()) {
             Player p = iterator.next();
@@ -102,20 +100,6 @@ public class GameController {
 
     }
 
-    private int checkForBlueCards(Player playingPlayer) {
-
-        int retAction = 0;
-        Iterator<PlayingCard> iterator = playingPlayer.getTableCards().iterator();
-        while (iterator.hasNext()) {
-            PlayingCard pc = iterator.next();
-            retAction = pc.useCard(playingPlayer, players);
-            if (retAction > 2) {
-                iterator.remove();
-            }
-        }
-
-        return retAction;
-    }
 
     public void firstPhasePickingCards(Player player) {
 
