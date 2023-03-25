@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Indiani extends BrownCard{
-    public Indiani(String title) {
+public class Indians extends BrownCard{
+    public Indians(String title) {
         super(title);
     }
 

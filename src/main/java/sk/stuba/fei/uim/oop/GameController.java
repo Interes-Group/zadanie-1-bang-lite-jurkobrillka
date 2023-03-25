@@ -1,9 +1,9 @@
 package sk.stuba.fei.uim.oop;
 
 import sk.stuba.fei.uim.oop.card.PlayingCard;
-import sk.stuba.fei.uim.oop.card.blues.Barile;
-import sk.stuba.fei.uim.oop.card.blues.Dinamite;
-import sk.stuba.fei.uim.oop.card.blues.Prigione;
+import sk.stuba.fei.uim.oop.card.blues.Barel;
+import sk.stuba.fei.uim.oop.card.blues.Dynamite;
+import sk.stuba.fei.uim.oop.card.blues.Prison;
 import sk.stuba.fei.uim.oop.card.browns.*;
 import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 
@@ -143,14 +143,14 @@ public class GameController {
 
     private void initializeCards() {
 
-        playingCards.add(new Dinamite("Dynamit"));
+        playingCards.add(new Dynamite("Dynamit"));
 
         for (int i = 0; i < 3; i++) {
-            playingCards.add(new Prigione("Vazenie"));
+            playingCards.add(new Prison("Vazenie"));
         }
 
         for (int i = 0; i < 2; i++) {
-            playingCards.add(new Barile("Barel"));
+            playingCards.add(new Barel("Barel"));
         }
 
         for (int i = 0; i < 30; i++) {
@@ -158,11 +158,11 @@ public class GameController {
         }
 
         for (int i = 0; i < 8; i++) {
-            playingCards.add(new Birra("Pivo"));
+            playingCards.add(new Beer("Pivo"));
         }
 
         for (int i = 0; i < 15; i++) {
-            playingCards.add(new Mancato("Vedla"));
+            playingCards.add(new Missed("Vedla"));
         }
 
         for (int i = 0; i < 6; i++) {
@@ -170,11 +170,11 @@ public class GameController {
         }
 
         for (int i = 0; i < 4; i++) {
-            playingCards.add(new Diligenza("Dostavnik"));
+            playingCards.add(new Diligence("Dostavnik"));
         }
 
         for (int i = 0; i < 2; i++) {
-            playingCards.add(new Indiani("Indiani"));
+            playingCards.add(new Indians("Indiani"));
         }
 
         Collections.shuffle(playingCards);

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Dinamite extends BlueCard {
+public class Dynamite extends BlueCard {
 
-    public Dinamite(String title) {
+    public Dynamite(String title) {
         super(title);
     }
 
@@ -30,7 +30,7 @@ public class Dinamite extends BlueCard {
             System.out.println("Nebuchol si (jes!): "+boomChance);
             Player pBefore = playingPlayer.whoIsPlayerBefore(players);
             System.out.println("Posuvas hracovi "+pBefore.getName()+" kartu dynamit :P ");
-            pBefore.addCardToTable(new Dinamite("Dynamit"));
+            pBefore.addCardToTable(new Dynamite("Dynamit"));
             return 20;
         }
 
@@ -43,15 +43,15 @@ public class Dinamite extends BlueCard {
 
         boolean canIPutOnTheTable = true;
         for (PlayingCard bc: byPlayer.getTableCards()){
-            if (bc instanceof Dinamite){
+            if (bc instanceof Dynamite){
                 System.out.println("Nemozes dat pred seba dynamit, uz jeden mas...\nVraciame ti kartu do ruky :) (nz...)");
-                byPlayer.getHandCards().add(new Dinamite("Dynamit"));
+                byPlayer.getHandCards().add(new Dynamite("Dynamit"));
                 canIPutOnTheTable = false;
                 break;
             }
         }
         if (canIPutOnTheTable){
-            puttingCardOnTable(new Dinamite("Dynamit"),byPlayer);
+            puttingCardOnTable(new Dynamite("Dynamit"),byPlayer);
         }
 
         return null;

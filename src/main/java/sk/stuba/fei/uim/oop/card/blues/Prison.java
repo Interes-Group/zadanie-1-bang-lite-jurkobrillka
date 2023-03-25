@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Prigione extends BlueCard{
+public class Prison extends BlueCard{
 
-    public Prigione(String title) {
+    public Prison(String title) {
         super(title);
     }
 
@@ -37,16 +37,16 @@ public class Prigione extends BlueCard{
         Player poorPlayer = byPlayer.choicePlayerToBeAttacked(byPlayer,players);
         boolean canIPutOnTheTable = true;
         for (PlayingCard bc: poorPlayer.getTableCards()){
-            if (bc instanceof Prigione){
+            if (bc instanceof Prison){
                 System.out.println("Nemozes tam dat vazenie, uz jeden ma...\nVraciame ti kartu do ruky :) (nz...)");
                 canIPutOnTheTable = false;
-                byPlayer.getHandCards().add(new Prigione("Vazenie"));
+                byPlayer.getHandCards().add(new Prison("Vazenie"));
                 break;
             }
         }
 
         if (canIPutOnTheTable){
-            puttingCardOnTable(new Prigione("Vazenie"),poorPlayer);
+            puttingCardOnTable(new Prison("Vazenie"),poorPlayer);
         }
 
         return null;

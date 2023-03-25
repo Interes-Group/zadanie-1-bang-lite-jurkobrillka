@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Diligenza extends BrownCard{
+public class Missed extends BrownCard{
 
-    public Diligenza(String title) {
+    public Missed(String title) {
         super(title);
     }
 
@@ -18,17 +18,11 @@ public class Diligenza extends BrownCard{
         return 0;
     }
 
+
     @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
-
-        System.out.print("Hrac "+byPlayer.getName()+" si taha 2 karty: ");
-        for (int i = 0; i < 2; i++) {
-
-            PlayingCard pc = deck.pop();
-            byPlayer.getHandCards().add(pc);
-            System.out.print(pc.getTitle()+", ");
-        }
-        System.out.println();
+        System.out.println("Karta vedle sa v tvojom tahu zahrat neda :) vraciame ti ju, najdes ju na konci balicka svojich kariet. (nz...)");
+        byPlayer.getHandCards().add(new Missed("Vedle"));
         return null;
     }
 }

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Birra extends BrownCard{
+public class Beer extends BrownCard{
 
 
-    public Birra(String title) {
+    public Beer(String title) {
         super(title);
     }
 

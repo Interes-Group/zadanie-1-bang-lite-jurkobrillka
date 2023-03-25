@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Barile extends BlueCard {
+public class Barel extends BlueCard {
 
-    public Barile(String title) {
+    public Barel(String title) {
         super(title);
     }
 
@@ -30,15 +30,15 @@ public class Barile extends BlueCard {
 
         boolean canIPutOnTheTable = true;
         for (PlayingCard bc : byPlayer.getTableCards()) {
-            if (bc instanceof Barile) {
+            if (bc instanceof Barel) {
                 System.out.println("Nemozes dat pred seba barel, uz jeden mas...\nVraciame ti kartu do ruky :) (nz...)");
-                byPlayer.getHandCards().add(new Barile("Barel"));
+                byPlayer.getHandCards().add(new Barel("Barel"));
                 canIPutOnTheTable = false;
                 break;
             }
         }
         if (canIPutOnTheTable) {
-            puttingCardOnTable(new Barile("Barel"), byPlayer);
+            puttingCardOnTable(new Barel("Barel"), byPlayer);
         }
 
         return null;

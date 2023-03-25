@@ -2,7 +2,7 @@ package sk.stuba.fei.uim.oop.card.browns;
 
 import sk.stuba.fei.uim.oop.Player;
 import sk.stuba.fei.uim.oop.card.PlayingCard;
-import sk.stuba.fei.uim.oop.card.blues.Barile;
+import sk.stuba.fei.uim.oop.card.blues.Barel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class Bang extends BrownCard{
         boolean canContinue = true;
 
             for (PlayingCard pc: attackedPlayer.getTableCards()){
-                if (pc instanceof Barile){
+                if (pc instanceof Barel){
                     if (pc.useCard(attackedPlayer, players) == 1){
                         System.out.println("Hrac to trafil do barelu, este ze ho mas.");
                         canContinue = false;
@@ -43,7 +43,7 @@ public class Bang extends BrownCard{
             if (canContinue){
                 boolean mancatoContinue = false;
                 for (PlayingCard cardMan: attackedPlayer.getHandCards()){
-                    if (cardMan instanceof Mancato){
+                    if (cardMan instanceof Missed){
                         mancatoContinue = true;
                         break;
                     }
@@ -51,7 +51,7 @@ public class Bang extends BrownCard{
 
                 if (mancatoContinue){
                     for (int j = 0; j < attackedPlayer.getHandCards().size(); j++) {
-                        if (attackedPlayer.getHandCards().get(j) instanceof Mancato){
+                        if (attackedPlayer.getHandCards().get(j) instanceof Missed){
                             attackedPlayer.getHandCards().remove(j);
                             break;
                         }
