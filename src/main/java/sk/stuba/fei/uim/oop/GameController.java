@@ -28,7 +28,7 @@ public class GameController {
         gameHearth();
     }
 
-    public void gameHearth() {
+    private void gameHearth() {
         System.out.println("Na rade je hrac: " + players.get(0).getName());
         int indexPlayer = 0;
 
@@ -52,7 +52,7 @@ public class GameController {
         }
     }
 
-    public void secondPhaseRoundChoice(Player playingPlayer) {
+    private void secondPhaseRoundChoice(Player playingPlayer) {
         boolean continueBool = true;
         while (continueBool) {
             checkDeathAndCommit();
@@ -101,7 +101,7 @@ public class GameController {
     }
 
 
-    public void firstPhasePickingCards(Player player) {
+    private void firstPhasePickingCards(Player player) {
 
         System.out.println("Faza c.1: Tahas si 2 karty");
         for (int i = 0; i < 2; i++) {
@@ -110,27 +110,27 @@ public class GameController {
         }
     }
 
-    public void roundMenu() {
+    private void roundMenu() {
         System.out.println("Zvol moznost z menu: ");
         System.out.println("1. pozri si svoje karty a pocet zivotov");
         System.out.println("2. Zahraj kartu");
         System.out.println("3. Koniec tahu");
     }
 
-    public void checkIfplayingCardsEmpty() {
+    private void checkIfplayingCardsEmpty() {
         if (playingCards.size() == 0) {
             System.out.println("-----------0 kariet v balicku, doplnime pomiesame-----------------------");
             reffilPlayingCardPack();
         }
     }
 
-    public void reffilPlayingCardPack() {
+    private void reffilPlayingCardPack() {
         playingCards.addAll(removedPlayingCards);
         removedPlayingCards.clear();
         Collections.shuffle(playingCards);
     }
 
-    public void lorePrint() {
+    private void lorePrint() {
         System.out.println("\n---------------------------------------------------------------------------------");
         System.out.println("Ahoj, vitaj v hre FEI-BANG!");
         System.out.println("Nastavenie hry prebiha nasledovne: ");
@@ -141,7 +141,7 @@ public class GameController {
         System.out.println("---------------------------------------------------------------------------------\n");
     }
 
-    public void initializeCards() {
+    private void initializeCards() {
 
         playingCards.add(new Dinamite("Dynamit"));
 
@@ -181,7 +181,7 @@ public class GameController {
 
     }
 
-    public void initializePlayers() {
+    private void initializePlayers() {
 
 
         while (true) {
@@ -206,7 +206,7 @@ public class GameController {
 
     }
 
-    public void startMenu() {
+    private void startMenu() {
         while (true) {
             startMenuPrint();
             int choice = ZKlavesnice.readInt("Vyber si moznost: (1/2)");
@@ -227,13 +227,13 @@ public class GameController {
     }
 
 
-    public void startMenuPrint() {
+    private void startMenuPrint() {
         System.out.println("Start menu:");
         System.out.println("1. Pozri si karty vybraneho hraca.");
         System.out.println("2. Zacnime hrat");
     }
 
-    public void badInputText() {
+    private void badInputText() {
         System.out.println("Zadal si zly vstup, opakuj volbu prosim");
     }
 

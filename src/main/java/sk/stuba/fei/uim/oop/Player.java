@@ -45,7 +45,7 @@ public class Player {
     }
 
 
-    public int cardChoice() {
+    private int cardChoice() {
         boolean goodChoice = true;
         int indexCard = 0;
         while (goodChoice) {
@@ -59,7 +59,7 @@ public class Player {
         return indexCard - 1;
     }
 
-    public void badInputText() {
+    private void badInputText() {
         System.out.println("Zadal si zly vstup, opakuj volbu prosim");
     }
 
@@ -171,7 +171,7 @@ public class Player {
         System.out.println("----------------------------");
     }
 
-    public void printPlayersDeckOfCards(List<PlayingCard> deck){
+    private void printPlayersDeckOfCards(List<PlayingCard> deck){
         if (deck.isEmpty()){
             System.out.println("Hrac nema ziadne karty");
         }else {
