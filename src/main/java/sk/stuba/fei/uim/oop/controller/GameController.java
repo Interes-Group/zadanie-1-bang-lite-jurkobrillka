@@ -1,5 +1,6 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.controller;
 
+import sk.stuba.fei.uim.oop.player.Player;
 import sk.stuba.fei.uim.oop.card.PlayingCard;
 import sk.stuba.fei.uim.oop.card.blues.Barel;
 import sk.stuba.fei.uim.oop.card.blues.Dynamite;

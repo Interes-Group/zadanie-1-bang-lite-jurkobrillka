@@ -1,4 +1,4 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.player;
 
 import sk.stuba.fei.uim.oop.card.PlayingCard;
 import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
