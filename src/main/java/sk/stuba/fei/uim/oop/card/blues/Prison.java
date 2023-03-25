@@ -10,8 +10,10 @@ import java.util.Stack;
 
 public class Prison extends BlueCard{
 
-    public Prison(String title) {
-        super(title);
+    private static final String TITLE = "Vazenie";
+
+    public Prison() {
+        super(TITLE);
     }
 
 
@@ -40,13 +42,13 @@ public class Prison extends BlueCard{
             if (bc instanceof Prison){
                 System.out.println("Nemozes tam dat vazenie, uz jeden ma...\nVraciame ti kartu do ruky :) (nz...)");
                 canIPutOnTheTable = false;
-                byPlayer.getHandCards().add(new Prison("Vazenie"));
+                byPlayer.getHandCards().add(new Prison());
                 break;
             }
         }
 
         if (canIPutOnTheTable){
-            puttingCardOnTable(new Prison("Vazenie"),poorPlayer);
+            puttingCardOnTable(new Prison(),poorPlayer);
         }
 
         return null;

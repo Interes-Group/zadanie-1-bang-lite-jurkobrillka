@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.Stack;
 
 public class Bang extends BrownCard{
-    public Bang(String title) {
-        super(title);
+
+    private static final String TITLE = "Bang";
+
+    public Bang() {
+        super(TITLE);
     }
 
     @Override

@@ -10,8 +10,10 @@ import java.util.Stack;
 
 public class CatBalou extends BrownCard{
 
-    public CatBalou(String title) {
-        super(title);
+    private static final String TITLE = "Cat Balou";
+
+    public CatBalou() {
+        super(TITLE);
     }
 
     @Override

@@ -9,8 +9,10 @@ import java.util.Stack;
 
 public class Diligence extends BrownCard{
 
-    public Diligence(String title) {
-        super(title);
+    private static final String TITLE = "Dostavnik";
+
+    public Diligence() {
+        super(TITLE);
     }
 
     @Override

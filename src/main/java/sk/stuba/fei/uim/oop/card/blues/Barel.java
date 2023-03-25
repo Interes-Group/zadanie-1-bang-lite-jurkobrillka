@@ -9,8 +9,10 @@ import java.util.Stack;
 
 public class Barel extends BlueCard {
 
-    public Barel(String title) {
-        super(title);
+    private static final String TITLE = "Barel";
+
+    public Barel() {
+        super(TITLE);
     }
 
     @Override
@@ -32,13 +34,13 @@ public class Barel extends BlueCard {
         for (PlayingCard bc : byPlayer.getTableCards()) {
             if (bc instanceof Barel) {
                 System.out.println("Nemozes dat pred seba barel, uz jeden mas...\nVraciame ti kartu do ruky :) (nz...)");
-                byPlayer.getHandCards().add(new Barel("Barel"));
+                byPlayer.getHandCards().add(new Barel());
                 canIPutOnTheTable = false;
                 break;
             }
         }
         if (canIPutOnTheTable) {
-            puttingCardOnTable(new Barel("Barel"), byPlayer);
+            puttingCardOnTable(new Barel(), byPlayer);
         }
 
         return null;

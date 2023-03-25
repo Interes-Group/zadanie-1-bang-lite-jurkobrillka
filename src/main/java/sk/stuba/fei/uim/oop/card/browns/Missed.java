@@ -9,8 +9,10 @@ import java.util.Stack;
 
 public class Missed extends BrownCard{
 
-    public Missed(String title) {
-        super(title);
+    private static final String TITLE = "Vedle";
+
+    public Missed() {
+        super(TITLE);
     }
 
     @Override
@@ -22,7 +24,7 @@ public class Missed extends BrownCard{
     @Override
     public ArrayList<PlayingCard> useCard(Stack<PlayingCard> deck, Player byPlayer, List<Player> players) {
         System.out.println("Karta vedle sa v tvojom tahu zahrat neda :) vraciame ti ju, najdes ju na konci balicka svojich kariet. (nz...)");
-        byPlayer.getHandCards().add(new Missed("Vedle"));
+        byPlayer.getHandCards().add(new Missed());
         return null;
     }
 }

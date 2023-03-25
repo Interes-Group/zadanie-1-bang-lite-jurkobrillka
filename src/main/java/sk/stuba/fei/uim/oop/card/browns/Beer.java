@@ -9,9 +9,10 @@ import java.util.Stack;
 
 public class Beer extends BrownCard{
 
+    private static final String TITLE = "Pivo";
 
-    public Beer(String title) {
-        super(title);
+    public Beer() {
+        super(TITLE);
     }
 
     @Override

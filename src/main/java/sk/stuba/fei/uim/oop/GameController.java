@@ -143,38 +143,38 @@ public class GameController {
 
     private void initializeCards() {
 
-        playingCards.add(new Dynamite("Dynamit"));
+        playingCards.add(new Dynamite());
 
         for (int i = 0; i < 3; i++) {
-            playingCards.add(new Prison("Vazenie"));
+            playingCards.add(new Prison());
         }
 
         for (int i = 0; i < 2; i++) {
-            playingCards.add(new Barel("Barel"));
+            playingCards.add(new Barel());
         }
 
         for (int i = 0; i < 30; i++) {
-            playingCards.add(new Bang("Bang"));
+            playingCards.add(new Bang());
         }
 
         for (int i = 0; i < 8; i++) {
-            playingCards.add(new Beer("Pivo"));
+            playingCards.add(new Beer());
         }
 
         for (int i = 0; i < 15; i++) {
-            playingCards.add(new Missed("Vedla"));
+            playingCards.add(new Missed());
         }
 
         for (int i = 0; i < 6; i++) {
-            playingCards.add(new CatBalou("Cat balou"));
+            playingCards.add(new CatBalou());
         }
 
         for (int i = 0; i < 4; i++) {
-            playingCards.add(new Diligence("Dostavnik"));
+            playingCards.add(new Diligence());
         }
 
         for (int i = 0; i < 2; i++) {
-            playingCards.add(new Indians("Indiani"));
+            playingCards.add(new Indians());
         }
 
         Collections.shuffle(playingCards);

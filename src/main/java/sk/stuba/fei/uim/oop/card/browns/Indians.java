@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Stack;
 
 public class Indians extends BrownCard{
-    public Indians(String title) {
-        super(title);
+
+    private static final String TITLE = "Indiani";
+    public Indians() {
+        super(TITLE);
     }
 
     @Override

@@ -9,8 +9,9 @@ import java.util.Stack;
 
 public class Dynamite extends BlueCard {
 
-    public Dynamite(String title) {
-        super(title);
+    private static final String TITLE = "Dynamit";
+    public Dynamite() {
+        super(TITLE);
     }
 
     @Override
@@ -30,7 +31,7 @@ public class Dynamite extends BlueCard {
             System.out.println("Nebuchol si (jes!): "+boomChance);
             Player pBefore = playingPlayer.whoIsPlayerBefore(players);
             System.out.println("Posuvas hracovi "+pBefore.getName()+" kartu dynamit :P ");
-            pBefore.addCardToTable(new Dynamite("Dynamit"));
+            pBefore.addCardToTable(new Dynamite());
             return 20;
         }
 
@@ -45,13 +46,13 @@ public class Dynamite extends BlueCard {
         for (PlayingCard bc: byPlayer.getTableCards()){
             if (bc instanceof Dynamite){
                 System.out.println("Nemozes dat pred seba dynamit, uz jeden mas...\nVraciame ti kartu do ruky :) (nz...)");
-                byPlayer.getHandCards().add(new Dynamite("Dynamit"));
+                byPlayer.getHandCards().add(new Dynamite());
                 canIPutOnTheTable = false;
                 break;
             }
         }
         if (canIPutOnTheTable){
-            puttingCardOnTable(new Dynamite("Dynamit"),byPlayer);
+            puttingCardOnTable(new Dynamite(),byPlayer);
         }
 
         return null;
