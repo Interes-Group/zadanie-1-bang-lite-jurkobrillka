@@ -19,6 +19,8 @@ public class GameController {
 
     private final Stack<PlayingCard> removedPlayingCards = new Stack<>();
 
+    private final List<Player> deathPlayers = new ArrayList<>();
+
     private final List<Player> players = new ArrayList<>();
 
     public GameController() {
@@ -88,14 +90,12 @@ public class GameController {
         while (iterator.hasNext()) {
             Player p = iterator.next();
             if (p.getLives() <= 0) {
-                p.playerDie(removedPlayingCards);
+                p.playerDie(removedPlayingCards, deathPlayers);
                 iterator.remove();
                 if (players.size() == 1) {
                     System.out.println("KONIEC HRY\nVYHRAL HRAC: " + players.get(0).getName() + " -> SI UZASNY");
                     System.exit(0);
                 }
-
-
             }
         }
 
