@@ -160,9 +160,9 @@ public class Player {
 
 
     public void printPlayersCard() {
-        System.out.println("\nHrac s menom " + name + " ma karty:");
+        System.out.println("\nHrac s menom " + name + " ma karty: ");
         System.out.println("\n----------------------------");
-        System.out.println("Karty na ruke:");
+        System.out.println("Karty na ruke: ");
         printPlayersDeckOfCards(handCards);
         System.out.println("----------------------------");
         System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
