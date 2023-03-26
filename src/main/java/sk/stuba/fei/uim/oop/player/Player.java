@@ -168,7 +168,7 @@ public class Player {
         System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
         System.out.println("----------------------------");
-        System.out.println("Karty na stole:");
+        System.out.println("Karty na stole: ");
         printPlayersDeckOfCards(tableCards);
         System.out.println("----------------------------");
     }
