@@ -49,7 +49,7 @@ public class Player {
         boolean goodChoice = true;
         int indexCard = 0;
         while (goodChoice) {
-            indexCard = ZKlavesnice.readInt("Zadaj poradove cislo karty (1-" + getHandCards().size() + ")");
+            indexCard = ZKlavesnice.readInt("Zadaj proosim poradove cislo karty (1-" + getHandCards().size() + ")");
             if (indexCard < 1 || indexCard > getHandCards().size()) {
                 badInputText();
             } else {
