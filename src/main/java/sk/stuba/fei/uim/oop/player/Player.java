@@ -12,9 +12,9 @@ public class Player {
 
     private int lives;
 
-    private List<PlayingCard> handCards;
+    private final List<PlayingCard> handCards;
 
-    private List<PlayingCard> tableCards;
+    private final List<PlayingCard> tableCards;
 
     public Player(String name, int lives, List<PlayingCard> handCards, List<PlayingCard> tableCards) {
         this.name = name;
